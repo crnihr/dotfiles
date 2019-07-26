@@ -1,0 +1,364 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;=========================================================================
+[colors]
+background = #00000000
+foreground = #bbffffff
+foreground-icon = #eeffffff
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+;=========================================================================
+;================================ bar ====================================
+;=========================================================================
+[bar/deepin]
+monitor = ${env:MONITOR:DVI-I-0}
+width = 895
+height = 27
+offset-x = 45%
+offset-y = 0
+bottom = false
+override-redirect = true
+radius = 0.0
+fixed-center = false
+background = ${colors.background}
+foreground = ${colors.foreground}
+foreground-icon = ${colors.foreground-icon}
+line-size = 0
+line-color = #f00
+border-size = 0
+border-color = #ff000000
+padding-left = 0
+padding-right = 4
+module-margin-left = 2
+module-margin-right = 2
+separator = 
+cursor-click = pointer
+cursor-scroll = pointer
+
+;============================= fonts =====================================
+font-0 = Noto Sans:size=10;2
+font-1 = Font Awesome 5 Free:pixelsize=10;2
+font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
+font-3 = Font Awesome 5 Brands:pixelsize=10;2
+font-4 = Material Icons:pixelsize=12;4
+font-5 = Noto Serif:size=10;2
+font-6 = Noto Serif:bold:size=10;2
+
+;=========================================================================
+;============================= modules ===================================
+;=========================================================================
+;workspaces xwindow powermenu pulseaudio cpu mem fs eth date files gedit controlcenter
+
+modules-left = workspaces
+modules-center = 
+modules-right = eth date gedit controlcenter
+
+;=============================== files ===================================
+
+[module/files]
+type = custom/text
+
+content =  
+content-background = 
+content-foreground = ${colors.foreground-icon}
+content-padding = 
+
+click-left = dde-file-manager &
+click-middle = 
+click-right = 
+
+;=============================== gedit ===================================
+
+[module/gedit]
+type = custom/text
+
+;content =  
+content =  
+;content =  
+content-background = 
+content-foreground = ${colors.foreground-icon}
+content-padding = 
+
+click-left = gedit &
+click-middle = 
+click-right = 
+
+;============================ controlcenter ==============================
+
+[module/controlcenter]
+type = custom/text
+
+content =  
+;content =  
+content-background = 
+content-foreground = ${colors.foreground-icon}
+content-padding = 
+
+click-left = dbus-send --print-reply --dest=com.deepin.dde.ControlCenter /com/deepin/dde/ControlCenter com.deepin.dde.ControlCenter.Show &
+click-middle = 
+click-right = 
+
+;============================ workspaces =================================
+
+[module/workspaces]
+type = internal/xworkspaces
+
+; Only show workspaces defined on the same output as the bar
+; Useful if you want to show monitor specific workspaces
+; on different bars
+; Default: false
+pin-workspaces = true
+
+; Create click handler used to focus desktop
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle desktops
+; Default: true
+enable-scroll = true
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-active = %index%
+label-active-font = 7
+label-active-foreground = ${colors.foreground-icon}
+label-active-background = #30ffffff
+label-active-underline = 
+label-active-padding = 5
+label-empty-foreground = ${colors.foreground}
+;label-empty-background = #35000000
+label-empty = %index%
+label-empty-font = 1
+label-empty-padding = 5
+
+;============================== xwindow ==================================
+
+[module/xwindow]
+type = internal/xwindow
+
+label = %title:0:120:...%
+label-empty = 
+
+;=============================== cpu =====================================
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground-icon}
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-padding = 
+label = %percentage:2%%
+
+;============================== mem ======================================
+
+[module/mem]
+type = internal/memory
+interval = 2
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground-icon}
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-padding = 
+label = %percentage_used%%
+
+;=============================== fs ===================================
+
+[module/fs]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+; Available tokens:
+;   %mountpoint%
+;   %type%
+;   %fsname%
+;   %percentage_free%
+;   %percentage_used%
+;   %total%
+;   %free%
+;   %used%
+; Default: %mountpoint% %percentage_free%%
+label-mounted = %{F#eeffffff}  %{F-}%percentage_used%%
+label-mounted-foreground = ${colors.foreground}
+label-mounted-background = ${colors.background}
+label-mounted-padding = 
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground}
+label-unmounted-background = ${self.label-mounted-background}
+label-unmounted-padding = ${self.label-mounted-padding}
+
+;============================ eth ====================================
+
+[module/eth]
+type = internal/network
+interface = enp2s0
+interval = 3.0
+
+format-connected-prefix = "  "
+format-connected-prefix-foreground = ${colors.foreground-icon}
+format-connected-padding = 
+; All labels support the following tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %local_ip6% [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+
+; Default: %ifname% %local_ip%
+label-connected =  %downspeed%  %upspeed%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+;=========================== date =====================================
+
+[module/date]
+type = internal/date
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-icon}
+label = %{F#eeffffff}%date%%{F-}
+date =  %H:%M
+date-alt =   %A, %d %B %Y    %H:%M
+time = %H:%M
+time-alt = ${self.time}
+
+[module/date-alt]
+type = internal/date
+
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground-icon}
+label = %date%   %{F#eeffffff} %time%%{F-}
+date-alt = %d/%m/%y
+date = %A, %d %B %Y
+time = %H:%M
+time-alt = ${self.time}
+
+;=========================== pulseaudio ===================================
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume>
+label-volume =  %percentage%%
+label-volume-foreground = ${colors.foreground-icon}
+
+label-muted = MUTED
+label-muted-foreground = #666
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+;============================= temp ======================================
+
+[module/temp]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label =  %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.foreground}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground}
+
+;============================ powermenu ==================================
+
+[module/powermenu]
+type = custom/menu
+
+format-padding = 
+format-spacing = 2
+label-open = 
+label-close = 
+label-separator = | 
+
+
+menu-0-0 = REBOOT
+menu-0-0-exec = 
+menu-0-1 = POWEROFF
+menu-0-1-exec = 
+menu-0-2 = LOGOUT
+menu-0-2-exec = 
+
+;=========================================================================
+
+; vim:ft=dosini
