@@ -174,7 +174,7 @@ font-7 = Noto Serif:bold:size=10;2
 
 modules-left = jgmenu workspaces
 modules-center = xwindow
-modules-right = cpu mem fs eth pulseaudio torrent gedit pamac controlcenter date-full shutdown
+modules-right = cpu mem fs eth pulseaudio gedit torrent pamac controlcenter date-full shutdown
 
 
 ;=========================================================================
@@ -186,8 +186,8 @@ modules-right = cpu mem fs eth pulseaudio torrent gedit pamac controlcenter date
 
 [module/jgmenu]
 type = custom/text
-content-padding = 2
-content = 
+content-padding = 0
+content = "   "
 click-left = jgmenu_run >/dev/null 2>&1 &
 
 
@@ -262,7 +262,7 @@ content-padding =
 
 click-left = gedit &
 click-middle = 
-click-right = 
+click-right = gedit ~/.config/polybar/config &
 
 ;============================ controlcenter ==============================
 
@@ -307,10 +307,30 @@ label-active-background = #bb757575
 label-active-underline = 
 label-active-padding = 5
 label-empty-foreground = ${colors.foreground}
-;label-empty-background = #35000000
+label-empty-background = 
 label-empty = %index%
 label-empty-font = 1
 label-empty-padding = 5
+
+;============================ workspaces-alt =================================
+
+[module/workspaces-alt]
+type = internal/xworkspaces
+
+label-active =
+label-active-foreground = ${colors.foreground-icon}
+label-active-background = 
+label-active-padding = 4
+
+label-empty =
+label-empty-foreground = ${colors.foreground}
+label-empty-background = 
+label-empty-padding = 4
+
+label-urgent = !
+label-urgent-foreground = #EC5f67
+label-urgent-background = 
+label-urgent-padding = 4
 
 ;============================== xwindow ==================================
 
