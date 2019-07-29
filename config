@@ -1,4 +1,4 @@
-;==========================================================
+;=========================================================================
 ;
 ;
 ;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
@@ -15,8 +15,10 @@
 ;   The README contains alot of information
 ;
 ;=========================================================================
+
 [colors]
 background = #00000000
+background-transparent = #aa111111
 foreground = #bbffffff
 foreground-icon = #eeffffff
 
@@ -32,8 +34,9 @@ screenchange-reload = true
 margin-top = 0
 margin-bottom = 0
 
+
 ;=========================================================================
-;================================ bar ====================================
+;				bar deepin
 ;=========================================================================
 [bar/deepin]
 monitor = ${env:MONITOR:DVI-I-0}
@@ -42,7 +45,6 @@ height = 27
 offset-x = 45%
 offset-y = 0
 bottom = false
-override-redirect = true
 radius = 0.0
 fixed-center = false
 background = ${colors.background}
@@ -59,31 +61,156 @@ module-margin-right = 2
 separator = 
 cursor-click = pointer
 cursor-scroll = pointer
+locale = hr_HR.UTF-8
+override-redirect = true
+;wm-restack = 
 
 ;============================= fonts =====================================
+
 font-0 = Noto Sans:size=10;2
-font-1 = Font Awesome 5 Free:pixelsize=10;2
-font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
-font-3 = Font Awesome 5 Brands:pixelsize=10;2
-font-4 = Material Icons:pixelsize=12;4
-font-5 = Noto Serif:size=10;2
-font-6 = Noto Serif:bold:size=10;2
+font-1 = FontAwesome:pixelsize=11;2
+font-2 = Font Awesome 5 Free:pixelsize=10;2
+font-3 = Font Awesome 5 Free Solid:pixelsize=10;2
+font-4 = Font Awesome 5 Brands:pixelsize=10;2
+font-5 = Material Icons:pixelsize=12;4
+font-6 = Noto Serif:size=10;2
+font-7 = Noto Serif:bold:size=10;2
 
 ;=========================================================================
-;============================= modules ===================================
+;			     bar deepin modules
 ;=========================================================================
-;workspaces xwindow powermenu pulseaudio cpu mem fs eth date files gedit controlcenter
+;workspaces xwindow powermenu pulseaudio cpu mem fs eth date gedit files controlcenter
 
-modules-left = workspaces
+modules-left = jgmenu workspaces
 modules-center = 
 modules-right = eth date gedit controlcenter
+
+
+
+;=========================================================================
+;				bar deepin-full 
+;=========================================================================
+[bar/deepin-full]
+monitor = ${env:MONITOR:DVI-I-0}
+width = 100%
+height = 28
+offset-x = 0
+offset-y = 0
+bottom = false
+radius = 0.0
+fixed-center = true
+background = ${colors.background-transparent}
+foreground = ${colors.foreground}
+foreground-icon = ${colors.foreground-icon}
+line-size = 0
+line-color = #f00
+border-size = 0
+border-color = #ff000000
+padding-left = 2
+padding-right = 6
+module-margin-left = 2
+module-margin-right = 2
+separator = 
+locale = hr_HR.UTF-8
+override-redirect = false
+;wm-restack = 
+cursor-click = pointer
+cursor-scroll = pointer
+click-left = 
+click-middle = 
+click-right = dbus-send --session --dest=com.deepin.wm --print-reply /com/deepin/wm com.deepin.wm.PerformAction int32:1 &
+scroll-up =
+scroll-down =
+
+; Position of the system tray window
+; If empty or undefined, tray support will be disabled
+; NOTE: A center aligned tray will cover center aligned modules
+;
+; Available positions:
+;   left
+;   center
+;   right
+;   none
+;tray-position = right
+
+; If true, the bar will not shift its
+; contents when the tray changes
+tray-detached = false
+
+; Tray icon max size
+tray-maxsize = 16
+
+; Background color for the tray container 
+; ARGB color (e.g. #f00, #ff992a, #ddff1023)
+; By default the tray container will use the bar
+; background color
+tray-background = 
+
+; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
+tray-offset-x = 0
+tray-offset-y = 0
+
+; Pad the sides of each tray icon
+tray-padding = 0
+
+; Scale factor for tray clients
+tray-scale = 1.0
+
+;============================= fonts =====================================
+
+font-0 = Noto Sans:size=10;2
+font-1 = FontAwesome:pixelsize=11;2
+font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
+font-3 = Font Awesome 5 Free:pixelsize=10;2
+font-4 = Font Awesome 5 Brands:pixelsize=10;2
+font-5 = Material Icons:pixelsize=12;4
+font-6 = Noto Serif:size=10;2
+font-7 = Noto Serif:bold:size=10;2
+
+;=========================================================================
+;			bar deepin-full modules
+;=========================================================================
+;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date-full torrent gedit pamac files controlcenter shutdown
+
+modules-left = jgmenu workspaces
+modules-center = xwindow
+modules-right = cpu mem fs eth pulseaudio torrent gedit pamac controlcenter date-full shutdown
+
+
+;=========================================================================
+;				modules
+;=========================================================================
+
+
+;=============================== jgmenu ==================================
+
+[module/jgmenu]
+type = custom/text
+content-padding = 2
+content = 
+click-left = jgmenu_run >/dev/null 2>&1 &
+
+
+;=============================== shutdown =================================
+
+[module/shutdown]
+type = custom/text
+
+content = 
+content-background = 
+content-foreground = ${colors.foreground-icon}
+content-padding = 
+
+click-left = dde-shutdown &
+click-middle = 
+click-right = 
 
 ;=============================== files ===================================
 
 [module/files]
 type = custom/text
 
-content =  
+content = 
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
@@ -92,14 +219,43 @@ click-left = dde-file-manager &
 click-middle = 
 click-right = 
 
+;=============================== torrent ==================================
+
+[module/torrent]
+type = custom/text
+
+;
+content = 
+content-background = 
+content-foreground = ${colors.foreground-icon}
+content-padding = 
+
+click-left = qbittorrent &
+click-middle = 
+click-right = 
+
+;=============================== pamac ===================================
+[module/pamac]
+type = custom/script
+
+exec = ~/.config/polybar/scripts/updates-arch.sh
+interval = 360
+;
+format-prefix = 
+format-prefix-foreground = 
+label = %output%
+format-foreground = ${colors.foreground-icon}
+click-left = pamac-manager &
+click-middle = 
+click-right = 
+
 ;=============================== gedit ===================================
 
 [module/gedit]
 type = custom/text
 
-;content =  
-content =  
-;content =  
+;
+content = 
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
@@ -113,8 +269,8 @@ click-right =
 [module/controlcenter]
 type = custom/text
 
-content =  
-;content =  
+;
+content = 
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
@@ -128,18 +284,15 @@ click-right =
 [module/workspaces]
 type = internal/xworkspaces
 
-; Only show workspaces defined on the same output as the bar
-; Useful if you want to show monitor specific workspaces
-; on different bars
-; Default: false
+icon-0 = Workspace 1;♚
+icon-1 = Workspace 2;♛
+icon-2 = Workspace 3;♜
+icon-3 = Workspace 4;♝
+icon-4 = Workspace 5;♞
+icon-default = ♟
+
 pin-workspaces = true
-
-; Create click handler used to focus desktop
-; Default: true
 enable-click = true
-
-; Create scroll handlers used to cycle desktops
-; Default: true
 enable-scroll = true
 
 ; Available tokens:
@@ -148,9 +301,9 @@ enable-scroll = true
 ;   %index%
 ; Default: %icon%  %name%
 label-active = %index%
-label-active-font = 7
+label-active-font = 8
 label-active-foreground = ${colors.foreground-icon}
-label-active-background = #30ffffff
+label-active-background = #bb757575
 label-active-underline = 
 label-active-padding = 5
 label-empty-foreground = ${colors.foreground}
@@ -165,7 +318,7 @@ label-empty-padding = 5
 type = internal/xwindow
 
 label = %title:0:120:...%
-label-empty = 
+label-empty = " "
 
 ;=============================== cpu =====================================
 
@@ -173,10 +326,10 @@ label-empty =
 type = internal/cpu
 interval = 2
 
-format-prefix = "  "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-icon}
 format-foreground = ${colors.foreground}
-format-background = ${colors.background}
+format-background = 
 format-padding = 
 label = %percentage:2%%
 
@@ -203,10 +356,10 @@ interval = 2
 ;   %gb_swap_total%
 ;   %gb_swap_free%
 ;   %gb_swap_used%
-format-prefix = "  "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-icon}
 format-foreground = ${colors.foreground}
-format-background = ${colors.background}
+format-background = 
 format-padding = 
 label = %percentage_used%%
 
@@ -228,9 +381,10 @@ mount-0 = /
 ;   %free%
 ;   %used%
 ; Default: %mountpoint% %percentage_free%%
-label-mounted = %{F#eeffffff}  %{F-}%percentage_used%%
+; 
+label-mounted = %{F#eeffffff} %{F-}%used%
 label-mounted-foreground = ${colors.foreground}
-label-mounted-background = ${colors.background}
+label-mounted-background = 
 label-mounted-padding = 
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground}
@@ -244,9 +398,12 @@ type = internal/network
 interface = enp2s0
 interval = 3.0
 
-format-connected-prefix = "  "
+;  
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-icon}
-format-connected-padding = 
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
 ; All labels support the following tokens:
 ;   %ifname%    [wireless+wired]
 ;   %local_ip%  [wireless+wired]
@@ -256,15 +413,9 @@ format-connected-padding =
 ;   %upspeed%   [wireless+wired]
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
-
 ; Default: %ifname% %local_ip%
 label-connected =  %downspeed%  %upspeed%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+label-disconnected = not connected
 
 ;=========================== date =====================================
 
@@ -279,45 +430,61 @@ date-alt =   %A, %d %B %Y    %H:%M
 time = %H:%M
 time-alt = ${self.time}
 
-[module/date-alt]
+;=========================== date-full =====================================
+
+[module/date-full]
 type = internal/date
 
-format-prefix = "  "
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-icon}
-label = %date%   %{F#eeffffff} %time%%{F-}
-date-alt = %d/%m/%y
-date = %A, %d %B %Y
-time = %H:%M
-time-alt = ${self.time}
+label = %{F#eeffffff}%date%%{F-}
+date = %H:%M
+date-alt =    %A, %d %B %Y     %H:%M
 
 ;=========================== pulseaudio ===================================
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume>
-label-volume =  %percentage%%
-label-volume-foreground = ${colors.foreground-icon}
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+;sink = alsa_output.pci-0000_03_06.0.iec958-stereo
 
-label-muted = MUTED
-label-muted-foreground = #666
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
+
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-muted = <label-muted>
+
+; Available tokens:
+;   %percentage% (default)
+label-volume = %percentage%%
+
+;
+;  
+; Available tokens:
+;   %percentage% (default)
+label-muted = 
+label-muted-foreground = 
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 ;============================= temp ======================================
 
@@ -345,16 +512,18 @@ ramp-foreground = ${colors.foreground}
 [module/powermenu]
 type = custom/menu
 
-format-padding = 
+expand-right = false
+;
+format-padding = 0
 format-spacing = 2
-label-open = 
-label-close = 
+label-open = 
+label-close = 
 label-separator = | 
 
 
-menu-0-0 = REBOOT
+menu-0-0 = POWEROFF
 menu-0-0-exec = 
-menu-0-1 = POWEROFF
+menu-0-1 = REBOOT
 menu-0-1-exec = 
 menu-0-2 = LOGOUT
 menu-0-2-exec = 
