@@ -107,7 +107,7 @@ line-color = #f00
 border-size = 0
 border-color = #ff000000
 padding-left = 2
-padding-right = 6
+padding-right = 5
 module-margin-left = 2
 module-margin-right = 2
 separator = 
@@ -117,7 +117,7 @@ override-redirect = false
 cursor-click = pointer
 cursor-scroll = pointer
 click-left = 
-click-middle = 
+click-middle = deepin-system-monitor &
 click-right = dbus-send --session --dest=com.deepin.wm --print-reply /com/deepin/wm com.deepin.wm.PerformAction int32:1 &
 scroll-up =
 scroll-down =
@@ -158,14 +158,14 @@ tray-scale = 1.0
 
 ;============================= fonts =====================================
 
-font-0 = Noto Sans:size=10;2
+font-0 = Noto Sans:size=9;3
 font-1 = FontAwesome:pixelsize=11;2
 font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
 font-3 = Font Awesome 5 Free:pixelsize=10;2
 font-4 = Font Awesome 5 Brands:pixelsize=10;2
 font-5 = Material Icons:pixelsize=12;4
 font-6 = Noto Serif:size=10;2
-font-7 = Noto Serif:bold:size=10;2
+font-7 = Noto Serif:bold:size=9;3
 
 ;=========================================================================
 ;			bar deepin-full modules
@@ -187,7 +187,8 @@ modules-right = cpu mem fs eth pulseaudio gedit torrent pamac controlcenter date
 [module/jgmenu]
 type = custom/text
 content-padding = 0
-content = "   "
+;  
+content = "   "
 click-left = jgmenu_run >/dev/null 2>&1 &
 
 
@@ -241,10 +242,12 @@ type = custom/script
 exec = ~/.config/polybar/scripts/updates-arch.sh
 interval = 360
 ;
+;icon is set in the script
 format-prefix = 
 format-prefix-foreground = 
 label = %output%
 format-foreground = ${colors.foreground-icon}
+
 click-left = pamac-manager &
 click-middle = 
 click-right = 
@@ -254,7 +257,7 @@ click-right =
 [module/gedit]
 type = custom/text
 
-;
+;
 content = 
 content-background = 
 content-foreground = ${colors.foreground-icon}
@@ -269,7 +272,7 @@ click-right = gedit ~/.config/polybar/config &
 [module/controlcenter]
 type = custom/text
 
-;
+;
 content = 
 content-background = 
 content-foreground = ${colors.foreground-icon}
@@ -300,16 +303,17 @@ enable-scroll = true
 ;   %icon%
 ;   %index%
 ; Default: %icon%  %name%
-label-active = %index%
+
 label-active-font = 8
+label-active = %index%
 label-active-foreground = ${colors.foreground-icon}
 label-active-background = #bb757575
-label-active-underline = 
 label-active-padding = 5
+
+label-empty-font = 1
+label-empty = %index%
 label-empty-foreground = ${colors.foreground}
 label-empty-background = 
-label-empty = %index%
-label-empty-font = 1
 label-empty-padding = 5
 
 ;============================ workspaces-alt =================================
@@ -317,12 +321,12 @@ label-empty-padding = 5
 [module/workspaces-alt]
 type = internal/xworkspaces
 
-label-active =
+label-active = 
 label-active-foreground = ${colors.foreground-icon}
 label-active-background = 
 label-active-padding = 4
 
-label-empty =
+label-empty = 
 label-empty-foreground = ${colors.foreground}
 label-empty-background = 
 label-empty-padding = 4
@@ -401,15 +405,15 @@ mount-0 = /
 ;   %free%
 ;   %used%
 ; Default: %mountpoint% %percentage_free%%
-; 
+; 
 label-mounted = %{F#eeffffff} %{F-}%used%
 label-mounted-foreground = ${colors.foreground}
 label-mounted-background = 
 label-mounted-padding = 
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground}
-label-unmounted-background = ${self.label-mounted-background}
-label-unmounted-padding = ${self.label-mounted-padding}
+label-unmounted-background = 
+label-unmounted-padding = 
 
 ;============================ eth ====================================
 
@@ -433,6 +437,7 @@ format-disconnected = <label-disconnected>
 ;   %upspeed%   [wireless+wired]
 ;   %downspeed% [wireless+wired]
 ;   %linkspeed% [wired]
+
 ; Default: %ifname% %local_ip%
 label-connected =  %downspeed%  %upspeed%
 label-disconnected = not connected
@@ -483,6 +488,7 @@ interval = 5
 ;   <ramp-volume>
 ;   <bar-volume>
 format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = ${colors.foreground-icon}
 
 ; Available tags:
 ;   <label-muted> (default)
@@ -493,18 +499,19 @@ format-muted = <label-muted>
 ; Available tokens:
 ;   %percentage% (default)
 label-volume = %percentage%%
+label-volume-foreground = ${colors.foreground}
 
 ;
-;  
+;  
 ; Available tokens:
 ;   %percentage% (default)
-label-muted = 
+label-muted = 
 label-muted-foreground = 
 
 ; Only applies if <ramp-volume> is used
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+ramp-volume-0 =  
+ramp-volume-1 =  
+ramp-volume-2 = 
 
 ;============================= temp ======================================
 

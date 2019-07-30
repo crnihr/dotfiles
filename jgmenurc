@@ -6,7 +6,7 @@ terminal_exec        = termite
 terminal_args        = -e
 columns		     = 1
 
-menu_width           = 227
+menu_width           = 225
 menu_padding_top     = 4
 menu_padding_right   = 0
 menu_padding_bottom  = 4
