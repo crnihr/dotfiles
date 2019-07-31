@@ -19,7 +19,7 @@
 [colors]
 background = #00000000
 background-transparent = #aa111111
-foreground = #bbffffff
+foreground = #aaffffff
 foreground-icon = #eeffffff
 
 [settings]
@@ -107,9 +107,9 @@ line-color = #f00
 border-size = 0
 border-color = #ff000000
 padding-left = 2
-padding-right = 5
-module-margin-left = 2
-module-margin-right = 2
+padding-right = 4
+module-margin-left = 0
+module-margin-right = 0
 separator = 
 locale = hr_HR.UTF-8
 override-redirect = false
@@ -158,14 +158,14 @@ tray-scale = 1.0
 
 ;============================= fonts =====================================
 
-font-0 = Noto Sans:size=9;3
+font-0 = Noto Sans:size=9;2
 font-1 = FontAwesome:pixelsize=11;2
 font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
 font-3 = Font Awesome 5 Free:pixelsize=10;2
 font-4 = Font Awesome 5 Brands:pixelsize=10;2
-font-5 = Material Icons:pixelsize=12;4
-font-6 = Noto Serif:size=10;2
-font-7 = Noto Serif:bold:size=9;3
+font-5 = Material Icons:pixelsize=12;3
+font-6 = Noto Serif:size=9;2
+font-7 = Noto Serif:bold:size=9;2
 
 ;=========================================================================
 ;			bar deepin-full modules
@@ -174,7 +174,7 @@ font-7 = Noto Serif:bold:size=9;3
 
 modules-left = jgmenu workspaces
 modules-center = xwindow
-modules-right = cpu mem fs eth pulseaudio gedit torrent pamac controlcenter date-full shutdown
+modules-right = cpu mem fs torrent eth pulseaudio gedit pamac controlcenter date-full shutdown
 
 
 ;=========================================================================
@@ -187,8 +187,8 @@ modules-right = cpu mem fs eth pulseaudio gedit torrent pamac controlcenter date
 [module/jgmenu]
 type = custom/text
 content-padding = 0
-;  
-content = "   "
+;   
+content = "       "
 click-left = jgmenu_run >/dev/null 2>&1 &
 
 
@@ -197,7 +197,7 @@ click-left = jgmenu_run >/dev/null 2>&1 &
 [module/shutdown]
 type = custom/text
 
-content = 
+content = "     "
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
@@ -211,27 +211,12 @@ click-right =
 [module/files]
 type = custom/text
 
-content = 
+content = "    "
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
 
 click-left = dde-file-manager &
-click-middle = 
-click-right = 
-
-;=============================== torrent ==================================
-
-[module/torrent]
-type = custom/text
-
-;
-content = 
-content-background = 
-content-foreground = ${colors.foreground-icon}
-content-padding = 
-
-click-left = qbittorrent &
 click-middle = 
 click-right = 
 
@@ -245,7 +230,7 @@ interval = 360
 ;icon is set in the script
 format-prefix = 
 format-prefix-foreground = 
-label = %output%
+label = "  %output%  "
 format-foreground = ${colors.foreground-icon}
 
 click-left = pamac-manager &
@@ -258,7 +243,7 @@ click-right =
 type = custom/text
 
 ;
-content = 
+content = "     "
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
@@ -272,8 +257,8 @@ click-right = gedit ~/.config/polybar/config &
 [module/controlcenter]
 type = custom/text
 
-;
-content = 
+;
+content = "    "
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
@@ -341,6 +326,7 @@ label-urgent-padding = 4
 [module/xwindow]
 type = internal/xwindow
 
+label-foreground = ${colors.foreground-icon}
 label = %title:0:120:...%
 label-empty = " "
 
@@ -350,7 +336,7 @@ label-empty = " "
 type = internal/cpu
 interval = 2
 
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${colors.foreground-icon}
 format-foreground = ${colors.foreground}
 format-background = 
@@ -380,7 +366,7 @@ interval = 2
 ;   %gb_swap_total%
 ;   %gb_swap_free%
 ;   %gb_swap_used%
-format-prefix = " "
+format-prefix = "    "
 format-prefix-foreground = ${colors.foreground-icon}
 format-foreground = ${colors.foreground}
 format-background = 
@@ -406,7 +392,7 @@ mount-0 = /
 ;   %used%
 ; Default: %mountpoint% %percentage_free%%
 ; 
-label-mounted = %{F#eeffffff} %{F-}%used%
+label-mounted = %{F#eeffffff}    %{F-}%used%
 label-mounted-foreground = ${colors.foreground}
 label-mounted-background = 
 label-mounted-padding = 
@@ -415,15 +401,27 @@ label-unmounted-foreground = ${colors.foreground}
 label-unmounted-background = 
 label-unmounted-padding = 
 
-;============================ eth ====================================
+;============================ torrent + eth ====================================
+
+[module/torrent]
+type = custom/text
+
+content = "    "
+content-background = 
+content-foreground = ${colors.foreground-icon}
+content-padding = 
+
+click-left = qbittorrent &
+click-middle = 
+click-right = 
 
 [module/eth]
 type = internal/network
 interface = enp2s0
 interval = 3.0
 
-;  
-format-connected-prefix = " "
+;  
+format-connected-prefix =
 format-connected-prefix-foreground = ${colors.foreground-icon}
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
@@ -439,7 +437,7 @@ format-disconnected = <label-disconnected>
 ;   %linkspeed% [wired]
 
 ; Default: %ifname% %local_ip%
-label-connected =  %downspeed%  %upspeed%
+label-connected = " %downspeed%  %upspeed%   "
 label-disconnected = not connected
 
 ;=========================== date =====================================
@@ -460,11 +458,10 @@ time-alt = ${self.time}
 [module/date-full]
 type = internal/date
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-icon}
-label = %{F#eeffffff}%date%%{F-}
+label-foreground = ${colors.foreground-icon}
+label = %date%
 date = %H:%M
-date-alt =    %A, %d %B %Y     %H:%M
+date-alt = "   %A, %d %B %Y     %H:%M"
 
 ;=========================== pulseaudio ===================================
 
@@ -505,13 +502,13 @@ label-volume-foreground = ${colors.foreground}
 ;  
 ; Available tokens:
 ;   %percentage% (default)
-label-muted = 
+label-muted = 
 label-muted-foreground = 
 
 ; Only applies if <ramp-volume> is used
-ramp-volume-0 =  
-ramp-volume-1 =  
-ramp-volume-2 = 
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 ;============================= temp ======================================
 
