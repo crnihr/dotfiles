@@ -114,9 +114,11 @@ separator =
 locale = hr_HR.UTF-8
 override-redirect = false
 ;wm-restack = 
+enable-ipc = true
 cursor-click = pointer
 cursor-scroll = pointer
 click-left = 
+double-click-left = polybar-msg cmd restart
 click-middle = deepin-system-monitor &
 click-right = dbus-send --session --dest=com.deepin.wm --print-reply /com/deepin/wm com.deepin.wm.PerformAction int32:1 &
 scroll-up =
@@ -131,29 +133,13 @@ scroll-down =
 ;   center
 ;   right
 ;   none
-;tray-position = right
-
-; If true, the bar will not shift its
-; contents when the tray changes
+tray-position = none
 tray-detached = false
-
-; Tray icon max size
 tray-maxsize = 16
-
-; Background color for the tray container 
-; ARGB color (e.g. #f00, #ff992a, #ddff1023)
-; By default the tray container will use the bar
-; background color
 tray-background = 
-
-; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
 tray-offset-x = 0
 tray-offset-y = 0
-
-; Pad the sides of each tray icon
 tray-padding = 0
-
-; Scale factor for tray clients
 tray-scale = 1.0
 
 ;============================= fonts =====================================
@@ -170,11 +156,11 @@ font-7 = Noto Serif:bold:size=9;2
 ;=========================================================================
 ;			bar deepin-full modules
 ;=========================================================================
-;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date-full torrent gedit pamac files controlcenter shutdown
+;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date-full torrent gedit updates files controlcenter shutdown
 
 modules-left = jgmenu workspaces
 modules-center = xwindow
-modules-right = cpu mem fs torrent eth pulseaudio gedit pamac controlcenter date-full shutdown
+modules-right = cpu mem fs torrent eth pulseaudio gedit updates controlcenter date-full shutdown
 
 
 ;=========================================================================
@@ -220,11 +206,11 @@ click-left = dde-file-manager &
 click-middle = 
 click-right = 
 
-;=============================== pamac ===================================
-[module/pamac]
+;=============================== updates ===================================
+[module/updates]
 type = custom/script
 
-exec = ~/.config/polybar/scripts/updates-arch.sh
+exec = ~/.config/polybar/scripts/updates.sh
 interval = 360
 ;
 ;icon is set in the script
@@ -235,7 +221,7 @@ format-foreground = ${colors.foreground-icon}
 
 click-left = pamac-manager &
 click-middle = 
-click-right = 
+click-right = pamac-manager --updates &
 
 ;=============================== gedit ===================================
 
@@ -249,7 +235,7 @@ content-foreground = ${colors.foreground-icon}
 content-padding = 
 
 click-left = gedit &
-click-middle = 
+click-middle = gedit ~/.conky/Datetime/DateTimeLight-Top-Right &
 click-right = gedit ~/.config/polybar/config &
 
 ;============================ controlcenter ==============================
@@ -293,6 +279,7 @@ label-active-font = 8
 label-active = %index%
 label-active-foreground = ${colors.foreground-icon}
 label-active-background = #bb757575
+;label-active-background = #2CA7F8
 label-active-padding = 5
 
 label-empty-font = 1
