@@ -19,8 +19,8 @@
 [colors]
 background = #00000000
 background-transparent = #aa111111
-foreground = #aaffffff
-foreground-icon = #eeffffff
+foreground = #ccffffff
+foreground-icon = #ccffffff
 
 [settings]
 screenchange-reload = true
@@ -118,7 +118,7 @@ enable-ipc = true
 cursor-click = pointer
 cursor-scroll = pointer
 click-left = 
-double-click-left = polybar-msg cmd restart
+double-click-left = polybar-msg cmd restart &
 click-middle = deepin-system-monitor &
 click-right = dbus-send --session --dest=com.deepin.wm --print-reply /com/deepin/wm com.deepin.wm.PerformAction int32:1 &
 scroll-up =
@@ -212,7 +212,7 @@ type = custom/script
 
 exec = ~/.config/polybar/scripts/updates.sh
 interval = 360
-;
+;
 ;icon is set in the script
 format-prefix = 
 format-prefix-foreground = 
@@ -378,7 +378,7 @@ mount-0 = /
 ;   %free%
 ;   %used%
 ; Default: %mountpoint% %percentage_free%%
-; 
+; 
 label-mounted = %{F#eeffffff}    %{F-}%used%
 label-mounted-foreground = ${colors.foreground}
 label-mounted-background = 
