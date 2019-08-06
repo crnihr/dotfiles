@@ -78,7 +78,7 @@ scroll-down =
 ;============================= fonts =====================================
 
 font-0 = Noto Sans:size=9;2
-font-1 = FontAwesome:pixelsize=11;2
+font-1 = FontAwesome:pixelsize=10;2
 font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
 font-3 = Font Awesome 5 Free:pixelsize=10;2
 font-4 = Font Awesome 5 Brands:pixelsize=10;2
@@ -156,7 +156,7 @@ tray-scale = 1.0
 ;============================= fonts =====================================
 
 font-0 = Noto Sans:size=9;2
-font-1 = FontAwesome:pixelsize=11;2
+font-1 = FontAwesome:pixelsize=10;2
 font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
 font-3 = Font Awesome 5 Free:pixelsize=10;2
 font-4 = Font Awesome 5 Brands:pixelsize=10;2
