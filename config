@@ -21,6 +21,8 @@ background = #00000000
 background-transparent = #aa111111
 foreground = #ccffffff
 foreground-icon = #ccffffff
+workspace-active = #85757575
+workspace-active-full = #bb757575
 
 [settings]
 screenchange-reload = true
@@ -40,14 +42,15 @@ margin-bottom = 0
 ;=========================================================================
 [bar/deepin]
 monitor = ${env:MONITOR:DVI-I-0}
-width = 895
-height = 27
+width = 855
+height = 28
 offset-x = 45%
 offset-y = 0
 bottom = false
 radius = 0.0
 fixed-center = false
 background = ${colors.background}
+workspace-active = ${colors.workspace-active}
 foreground = ${colors.foreground}
 foreground-icon = ${colors.foreground-icon}
 line-size = 0
@@ -56,14 +59,21 @@ border-size = 0
 border-color = #ff000000
 padding-left = 0
 padding-right = 4
-module-margin-left = 2
-module-margin-right = 2
+module-margin-left = 0
+module-margin-right = 0
 separator = 
-cursor-click = pointer
-cursor-scroll = pointer
 locale = hr_HR.UTF-8
 override-redirect = true
 ;wm-restack = 
+enable-ipc = true
+cursor-click = pointer
+cursor-scroll = pointer
+click-left = 
+double-click-left = polybar-msg cmd restart &
+click-middle = deepin-system-monitor &
+click-right = dbus-send --session --dest=com.deepin.wm --print-reply /com/deepin/wm com.deepin.wm.PerformAction int32:1 &
+scroll-up =
+scroll-down =
 
 ;============================= fonts =====================================
 
@@ -81,9 +91,9 @@ font-7 = Noto Serif:bold:size=10;2
 ;=========================================================================
 ;workspaces xwindow powermenu pulseaudio cpu mem fs eth date gedit files controlcenter
 
-modules-left = jgmenu workspaces
+modules-left = workspaces
 modules-center = 
-modules-right = eth date gedit controlcenter
+modules-right = cpu mem fs torrent eth gedit controlcenter
 
 
 
@@ -102,6 +112,7 @@ fixed-center = true
 background = ${colors.background-transparent}
 foreground = ${colors.foreground}
 foreground-icon = ${colors.foreground-icon}
+workspace-active = ${colors.workspace-active-full}
 line-size = 0
 line-color = #f00
 border-size = 0
@@ -160,7 +171,7 @@ font-7 = Noto Serif:bold:size=9;2
 
 modules-left = jgmenu workspaces
 modules-center = xwindow
-modules-right = cpu mem fs torrent eth pulseaudio gedit updates controlcenter date-full shutdown
+modules-right = cpu mem fs torrent eth pulseaudio gedit updates controlcenter date shutdown
 
 
 ;=========================================================================
@@ -229,7 +240,7 @@ click-right = pamac-manager --updates &
 type = custom/text
 
 ;
-content = "     "
+content = "    "
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
@@ -278,7 +289,7 @@ enable-scroll = true
 label-active-font = 8
 label-active = %index%
 label-active-foreground = ${colors.foreground-icon}
-label-active-background = #bb757575
+label-active-background = ${colors.workspace-active}
 ;label-active-background = #2CA7F8
 label-active-padding = 5
 
@@ -407,7 +418,7 @@ type = internal/network
 interface = enp2s0
 interval = 3.0
 
-;  
+; 
 format-connected-prefix =
 format-connected-prefix-foreground = ${colors.foreground-icon}
 format-connected = <label-connected>
@@ -424,25 +435,12 @@ format-disconnected = <label-disconnected>
 ;   %linkspeed% [wired]
 
 ; Default: %ifname% %local_ip%
-label-connected = " %downspeed%  %upspeed%   "
+label-connected = " %downspeed%   %upspeed%  "
 label-disconnected = not connected
 
 ;=========================== date =====================================
 
 [module/date]
-type = internal/date
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-icon}
-label = %{F#eeffffff}%date%%{F-}
-date =  %H:%M
-date-alt =   %A, %d %B %Y    %H:%M
-time = %H:%M
-time-alt = ${self.time}
-
-;=========================== date-full =====================================
-
-[module/date-full]
 type = internal/date
 
 label-foreground = ${colors.foreground-icon}
@@ -482,7 +480,7 @@ format-muted = <label-muted>
 
 ; Available tokens:
 ;   %percentage% (default)
-label-volume = %percentage%%
+label-volume = "%percentage%% "
 label-volume-foreground = ${colors.foreground}
 
 ;
