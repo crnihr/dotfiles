@@ -21,8 +21,7 @@ background = #00000000
 background-transparent = #aa111111
 foreground = #ccffffff
 foreground-icon = #ccffffff
-workspace-active = #85757575
-workspace-active-full = #bb757575
+workspace-active = #aa757575
 
 [settings]
 screenchange-reload = true
@@ -42,25 +41,23 @@ margin-bottom = 0
 ;=========================================================================
 [bar/deepin]
 monitor = ${env:MONITOR:DVI-I-0}
-width = 855
-height = 28
+width = 852
+height = 27
 offset-x = 45%
 offset-y = 0
 bottom = false
 radius = 0.0
 fixed-center = false
 background = ${colors.background}
-workspace-active = ${colors.workspace-active}
 foreground = ${colors.foreground}
-foreground-icon = ${colors.foreground-icon}
 line-size = 0
 line-color = #f00
 border-size = 0
 border-color = #ff000000
 padding-left = 0
 padding-right = 4
-module-margin-left = 0
-module-margin-right = 0
+module-margin-left = 1
+module-margin-right = 1
 separator = 
 locale = hr_HR.UTF-8
 override-redirect = true
@@ -82,14 +79,14 @@ font-1 = FontAwesome:pixelsize=10;2
 font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
 font-3 = Font Awesome 5 Free:pixelsize=10;2
 font-4 = Font Awesome 5 Brands:pixelsize=10;2
-font-5 = Material Icons:pixelsize=12;3
+font-5 = Material Icons:pixelsize=12;4
 font-6 = Noto Serif:size=9;2
 font-7 = Noto Serif:bold:size=9;2
 
 ;=========================================================================
 ;			     bar deepin modules
 ;=========================================================================
-;workspaces xwindow powermenu pulseaudio cpu mem fs eth date gedit files controlcenter
+;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date torrent gedit updates files controlcenter shutdown
 
 modules-left = workspaces
 modules-center = 
@@ -111,9 +108,7 @@ radius = 0.0
 fixed-center = true
 background = ${colors.background-transparent}
 foreground = ${colors.foreground}
-foreground-icon = ${colors.foreground-icon}
-workspace-active = ${colors.workspace-active-full}
-line-size = 0
+line-size = 0z
 line-color = #f00
 border-size = 0
 border-color = #ff000000
@@ -128,7 +123,7 @@ override-redirect = false
 enable-ipc = true
 cursor-click = pointer
 cursor-scroll = pointer
-click-left = 
+;click-left = jgmenu_run >/dev/null 2>&1 &
 double-click-left = polybar-msg cmd restart &
 click-middle = deepin-system-monitor &
 click-right = dbus-send --session --dest=com.deepin.wm --print-reply /com/deepin/wm com.deepin.wm.PerformAction int32:1 &
@@ -167,7 +162,7 @@ font-7 = Noto Serif:bold:size=9;2
 ;=========================================================================
 ;			bar deepin-full modules
 ;=========================================================================
-;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date-full torrent gedit updates files controlcenter shutdown
+;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date torrent gedit updates files controlcenter shutdown
 
 modules-left = jgmenu workspaces
 modules-center = xwindow
@@ -218,6 +213,7 @@ click-middle =
 click-right = 
 
 ;=============================== updates ===================================
+
 [module/updates]
 type = custom/script
 
@@ -245,9 +241,9 @@ content-background =
 content-foreground = ${colors.foreground-icon}
 content-padding = 
 
-click-left = gedit &
-click-middle = gedit ~/.conky/Datetime/DateTimeLight-Top-Right &
-click-right = gedit ~/.config/polybar/config &
+click-left = gedit ~/.config/polybar/config &
+click-middle = 
+click-right = gedit &
 
 ;============================ controlcenter ==============================
 
