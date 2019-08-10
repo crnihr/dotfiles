@@ -62,11 +62,11 @@ separator =
 locale = hr_HR.UTF-8
 override-redirect = true
 ;wm-restack = 
-enable-ipc = true
+;enable-ipc = true
 cursor-click = pointer
 cursor-scroll = pointer
 click-left = 
-double-click-left = polybar-msg cmd restart &
+double-click-left = 
 click-middle = deepin-system-monitor &
 click-right = dbus-send --session --dest=com.deepin.wm --print-reply /com/deepin/wm com.deepin.wm.PerformAction int32:1 &
 scroll-up =
@@ -108,23 +108,23 @@ radius = 0.0
 fixed-center = true
 background = ${colors.background-transparent}
 foreground = ${colors.foreground}
-line-size = 0z
-line-color = #f00
-border-size = 0
-border-color = #ff000000
-padding-left = 2
+line-size = 
+line-color = 
+border-size = 
+border-color = 
+padding-left = 0
 padding-right = 4
-module-margin-left = 0
+module-margin-left = 1
 module-margin-right = 0
 separator = 
 locale = hr_HR.UTF-8
 override-redirect = false
 ;wm-restack = 
-enable-ipc = true
 cursor-click = pointer
 cursor-scroll = pointer
-;click-left = jgmenu_run >/dev/null 2>&1 &
-double-click-left = polybar-msg cmd restart &
+;enable-ipc = true
+;double-click-left = polybar-msg cmd restart &
+click-left = jgmenu_run >/dev/null 2>&1 &
 click-middle = deepin-system-monitor &
 click-right = dbus-send --session --dest=com.deepin.wm --print-reply /com/deepin/wm com.deepin.wm.PerformAction int32:1 &
 scroll-up =
@@ -164,9 +164,9 @@ font-7 = Noto Serif:bold:size=9;2
 ;=========================================================================
 ;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date torrent gedit updates files controlcenter shutdown
 
-modules-left = jgmenu workspaces
+modules-left = workspaces
 modules-center = xwindow
-modules-right = cpu mem fs torrent eth pulseaudio gedit updates controlcenter date shutdown
+modules-right = cpu mem fs torrent eth pulseaudio updates gedit controlcenter date
 
 
 ;=========================================================================
@@ -178,9 +178,11 @@ modules-right = cpu mem fs torrent eth pulseaudio gedit updates controlcenter da
 
 [module/jgmenu]
 type = custom/text
-content-padding = 0
-;   
-content = "       "
+content-padding = 2
+;content-foreground = #34BE5B (manjaro green)
+content-foreground = #70ffffff
+;   
+content = "     "
 click-left = jgmenu_run >/dev/null 2>&1 &
 
 
@@ -223,7 +225,7 @@ interval = 360
 ;icon is set in the script
 format-prefix = 
 format-prefix-foreground = 
-label = "  %output%  "
+label = " %output% "
 format-foreground = ${colors.foreground-icon}
 
 click-left = pamac-manager &
@@ -236,7 +238,7 @@ click-right = pamac-manager --updates &
 type = custom/text
 
 ;
-content = "    "
+content = "  "
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
@@ -251,7 +253,7 @@ click-right = gedit &
 type = custom/text
 
 ;
-content = "    "
+content = "  "
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
@@ -309,11 +311,6 @@ label-empty = 
 label-empty-foreground = ${colors.foreground}
 label-empty-background = 
 label-empty-padding = 4
-
-label-urgent = !
-label-urgent-foreground = #EC5f67
-label-urgent-background = 
-label-urgent-padding = 4
 
 ;============================== xwindow ==================================
 
@@ -400,7 +397,7 @@ label-unmounted-padding =
 [module/torrent]
 type = custom/text
 
-content = "    "
+content = "   "
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
@@ -439,10 +436,10 @@ label-disconnected = not connected
 [module/date]
 type = internal/date
 
-label-foreground = ${colors.foreground-icon}
+label-foreground = #ffffff
 label = %date%
 date = %H:%M
-date-alt = "   %A, %d %B %Y     %H:%M"
+date-alt = "   %A, %d %B %Y     %H:%M"
 
 ;=========================== pulseaudio ===================================
 
@@ -480,7 +477,7 @@ label-volume = "%percentage%% "
 label-volume-foreground = ${colors.foreground}
 
 ;
-;  
+;  
 ; Available tokens:
 ;   %percentage% (default)
 label-muted = 

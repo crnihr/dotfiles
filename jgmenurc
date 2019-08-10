@@ -4,7 +4,7 @@ csv_no_dirs 	     = 0
 csv_single_window    = 0
 tint2_look           = 0
 at_pointer           = 1
-terminal_exec        = termite
+terminal_exec        = deepin-terminal
 terminal_args        = -e
 columns		     = 1
 
@@ -42,7 +42,7 @@ icon_text_spacing    = 14
 #arrow_string 	     = 
 #arrow_width 	     = 
 
-color_menu_bg        = #FAFBFC 95
+color_menu_bg        = #FAFBFC 98
 color_menu_border    = #202020 10
 color_norm_bg        = #2b303b 0
 color_norm_fg        = #202020 85
