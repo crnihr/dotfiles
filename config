@@ -18,7 +18,7 @@
 
 [colors]
 background = #00000000
-background-transparent = #aa111111
+background-transparent = #8504060e
 foreground = #ccffffff
 foreground-icon = #ccffffff
 workspace-active = #aa757575
@@ -108,7 +108,7 @@ radius = 0.0
 fixed-center = true
 background = ${colors.background-transparent}
 foreground = ${colors.foreground}
-line-size = 
+line-size = 1
 line-color = 
 border-size = 
 border-color = 
@@ -289,6 +289,7 @@ label-active = %index%
 label-active-foreground = ${colors.foreground-icon}
 label-active-background = ${colors.workspace-active}
 ;label-active-background = #2CA7F8
+label-active-underline = 
 label-active-padding = 5
 
 label-empty-font = 1
