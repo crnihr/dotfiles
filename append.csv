@@ -6,4 +6,4 @@
 #Reboot,dde-shutdown,
 #Poweroff,dde-shutdown,
 ^sep()
-Power Menu,dde-shutdown,system-shutdown
+Power Menu,xfce4-session-logout,system-shutdown

@@ -18,10 +18,10 @@
 
 [colors]
 background = #00000000
-background-transparent = #8504060e
+background-transparent = #7504060e
 foreground = #ccffffff
 foreground-icon = #ccffffff
-workspace-active = #aa757575
+workspace-active = #75757575
 
 [settings]
 screenchange-reload = true
@@ -37,67 +37,9 @@ margin-bottom = 0
 
 
 ;=========================================================================
-;				bar deepin
+;				  top-bar
 ;=========================================================================
-[bar/deepin]
-monitor = ${env:MONITOR:DVI-I-0}
-width = 852
-height = 27
-offset-x = 45%
-offset-y = 0
-bottom = false
-radius = 0.0
-fixed-center = false
-background = ${colors.background}
-foreground = ${colors.foreground}
-line-size = 0
-line-color = #f00
-border-size = 0
-border-color = #ff000000
-padding-left = 0
-padding-right = 4
-module-margin-left = 1
-module-margin-right = 1
-separator = 
-locale = hr_HR.UTF-8
-override-redirect = true
-;wm-restack = 
-;enable-ipc = true
-cursor-click = pointer
-cursor-scroll = pointer
-click-left = 
-double-click-left = 
-click-middle = deepin-system-monitor &
-click-right = dbus-send --session --dest=com.deepin.wm --print-reply /com/deepin/wm com.deepin.wm.PerformAction int32:1 &
-scroll-up =
-scroll-down =
-
-;============================= fonts =====================================
-
-font-0 = Noto Sans:size=9;2
-font-1 = FontAwesome:pixelsize=10;2
-font-2 = Font Awesome 5 Free Solid:pixelsize=10;2
-font-3 = Font Awesome 5 Free:pixelsize=10;2
-font-4 = Font Awesome 5 Brands:pixelsize=10;2
-font-5 = Material Icons:pixelsize=12;4
-font-6 = Noto Serif:size=9;2
-font-7 = Noto Serif:bold:size=9;2
-
-;=========================================================================
-;			     bar deepin modules
-;=========================================================================
-;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date torrent gedit updates files controlcenter shutdown
-
-modules-left = workspaces
-modules-center = 
-modules-right = cpu mem fs torrent eth gedit controlcenter
-
-
-
-;=========================================================================
-;				bar deepin-full 
-;=========================================================================
-[bar/deepin-full]
+[bar/top-bar]
 monitor = ${env:MONITOR:DVI-I-0}
 width = 100%
 height = 28
@@ -125,8 +67,8 @@ cursor-scroll = pointer
 ;enable-ipc = true
 ;double-click-left = polybar-msg cmd restart &
 click-left = jgmenu_run >/dev/null 2>&1 &
-click-middle = deepin-system-monitor &
-click-right = dbus-send --session --dest=com.deepin.wm --print-reply /com/deepin/wm com.deepin.wm.PerformAction int32:1 &
+click-middle = xfce4-taskmanager &
+click-right = 
 scroll-up =
 scroll-down =
 
@@ -160,18 +102,13 @@ font-6 = Noto Serif:size=9;2
 font-7 = Noto Serif:bold:size=9;2
 
 ;=========================================================================
-;			bar deepin-full modules
+;			       modules
 ;=========================================================================
-;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date torrent gedit updates files controlcenter shutdown
+;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date torrent gedit updates files settings shutdown
 
 modules-left = workspaces
-modules-center = xwindow
-modules-right = cpu mem fs torrent eth pulseaudio updates gedit controlcenter date
-
-
-;=========================================================================
-;				modules
-;=========================================================================
+modules-center = compton xwindow
+modules-right = cpu mem fs torrent eth pulseaudio updates gedit settings date
 
 
 ;=============================== jgmenu ==================================
@@ -181,8 +118,7 @@ type = custom/text
 content-padding = 2
 ;content-foreground = #34BE5B (manjaro green)
 content-foreground = #70ffffff
-;   
-content = "     "
+content = "     "
 click-left = jgmenu_run >/dev/null 2>&1 &
 
 
@@ -191,12 +127,12 @@ click-left = jgmenu_run >/dev/null 2>&1 &
 [module/shutdown]
 type = custom/text
 
-content = "     "
+content = "   "
 content-background = 
 content-foreground = ${colors.foreground-icon}
 content-padding = 
 
-click-left = dde-shutdown &
+click-left = xfce4-session-logout &
 click-middle = 
 click-right = 
 
@@ -210,7 +146,7 @@ content-background =
 content-foreground = ${colors.foreground-icon}
 content-padding = 
 
-click-left = dde-file-manager &
+click-left = 
 click-middle = 
 click-right = 
 
@@ -232,6 +168,23 @@ click-left = pamac-manager &
 click-middle = 
 click-right = pamac-manager --updates &
 
+;=============================== compton ===================================
+
+[module/compton]
+type = custom/script
+
+exec = ~/.config/polybar/scripts/compton.sh
+interval = 5
+click-left = ~/.config/polybar/scripts/compton.sh --toggle
+click-middle = 
+click-right = 
+
+format-prefix = 
+format-prefix-foreground = 
+label = "   "
+format-foreground = ${colors.foreground-icon}
+
+
 ;=============================== gedit ===================================
 
 [module/gedit]
@@ -244,12 +197,12 @@ content-foreground = ${colors.foreground-icon}
 content-padding = 
 
 click-left = gedit ~/.config/polybar/config &
-click-middle = 
+click-middle = gedit ~/.config/compton.conf &
 click-right = gedit &
 
-;============================ controlcenter ==============================
+;============================ settings ==== ==============================
 
-[module/controlcenter]
+[module/settings]
 type = custom/text
 
 ;
@@ -258,7 +211,7 @@ content-background =
 content-foreground = ${colors.foreground-icon}
 content-padding = 
 
-click-left = dbus-send --print-reply --dest=com.deepin.dde.ControlCenter /com/deepin/dde/ControlCenter com.deepin.dde.ControlCenter.Show &
+click-left = xfce4-settings-manager &
 click-middle = 
 click-right = 
 
@@ -383,7 +336,7 @@ mount-0 = /
 ;   %free%
 ;   %used%
 ; Default: %mountpoint% %percentage_free%%
-; 
+; 
 label-mounted = %{F#eeffffff}    %{F-}%used%
 label-mounted-foreground = ${colors.foreground}
 label-mounted-background = 
@@ -412,7 +365,6 @@ type = internal/network
 interface = enp2s0
 interval = 3.0
 
-; 
 format-connected-prefix =
 format-connected-prefix-foreground = ${colors.foreground-icon}
 format-connected = <label-connected>
@@ -432,7 +384,7 @@ format-disconnected = <label-disconnected>
 label-connected = " %downspeed%   %upspeed%  "
 label-disconnected = not connected
 
-;=========================== date =====================================
+;=============================== date =====================================
 
 [module/date]
 type = internal/date
@@ -534,3 +486,4 @@ menu-0-2-exec =
 ;=========================================================================
 
 ; vim:ft=dosini
+

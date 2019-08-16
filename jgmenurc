@@ -45,7 +45,7 @@ icon_text_spacing    = 14
 color_menu_bg        = #FAFBFC 98
 color_menu_border    = #202020 10
 color_norm_bg        = #2b303b 0
-color_norm_fg        = #202020 85
+color_norm_fg        = #202020 70
 
 #deepin
 #color_sel_bg         = #2CA7F8 100
@@ -56,3 +56,4 @@ color_sel_bg         = #202020 12
 color_sel_fg         = #202020 90
 
 color_sep_fg         = #000000 10
+
