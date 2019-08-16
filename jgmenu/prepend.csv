@@ -1,0 +1,5 @@
+Files,GTK_THEME=Qogir-dark nautilus,org.gnome.Nautilus
+Terminal,exo-open --launch TerminalEmulator,utilities-terminal
+#Text Editor,gedit,org.gnome.gedit
+^sep()
+

@@ -1,0 +1,59 @@
+stay_alive           = 1
+csv_cmd              = pmenu
+csv_no_dirs 	     = 0
+csv_single_window    = 0
+tint2_look           = 0
+at_pointer           = 1
+terminal_exec        = deepin-terminal
+terminal_args        = -e
+columns		     = 1
+
+menu_width           = 200
+#menu_margin_x       = 0
+#menu_margin_y       = 0
+menu_padding_top     = 8
+menu_padding_right   = 0
+menu_padding_bottom  = 8
+menu_padding_left    = 0
+menu_radius          = 5
+menu_border          = 1
+menu_halign          = left
+
+sub_spacing	     = -4
+sub_padding_top      = 8
+sub_padding_right    = 0
+sub_padding_bottom   = 8
+sub_padding_left     = 0
+
+sub_hover_action     = 1
+hover_delay	     = 150
+
+item_margin_x        = 0
+item_margin_y        = 0
+item_height          = 28
+item_padding_x       = 14
+item_radius          = 0
+item_border          = 0
+sep_height           = 0
+
+font                 = 
+icon_size            = 22
+icon_text_spacing    = 14
+#arrow_string 	     = 
+#arrow_width 	     = 
+
+color_menu_bg        = #FAFBFC 98
+color_menu_border    = #202020 10
+color_norm_bg        = #2b303b 0
+color_norm_fg        = #202020 70
+
+#deepin
+#color_sel_bg         = #2CA7F8 100
+#color_sel_fg         = #ffffff 90
+
+#gray
+color_sel_bg         = #202020 12
+color_sel_fg         = #202020 90
+
+color_sep_fg         = #000000 10
+
