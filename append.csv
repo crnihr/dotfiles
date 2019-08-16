@@ -1,9 +1,0 @@
-#^sep()
-#Exit,^checkout(exit),system-shutdown
-#^tag(exit)
-#Lock,dde-shutdown
-#Log out,dde-shutdown,
-#Reboot,dde-shutdown,
-#Poweroff,dde-shutdown,
-^sep()
-Power Menu,xfce4-session-logout,system-shutdown
