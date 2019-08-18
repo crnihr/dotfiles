@@ -68,7 +68,13 @@ cursor-scroll = pointer
 ;double-click-left = polybar-msg cmd restart &
 click-left = jgmenu_run >/dev/null 2>&1 &
 click-middle = xfce4-taskmanager &
-click-right = 
+click-right = ./winfuncs.sh select #
+; also
+; ./winfuncs.sh tile #
+; ./winfuncs.sh tiletwo #
+; ./winfuncs.sh cascade
+; ./winfuncs.sh showdesktop
+
 scroll-up =
 scroll-down =
 
