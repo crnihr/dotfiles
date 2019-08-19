@@ -125,15 +125,15 @@ function win_cascade {
 
 	(( ${#WDOWS[@]} < 1 )) && return;
 
-	x=24; y=48; commands=""
+	x=0; y=0; commands=""
 	for window in ${WDOWS[@]} ; do
 		wmctrl -i -r $window -b remove,maximized_vert,maximized_horz
 
-		commands="$commands windowsize $window 1024 640"
+		commands="$commands windowsize $window 960 540"
 		commands="$commands windowmove $window $x $y"
 
-		x=`expr $x + 120`
-	  y=`expr $y + 120`
+		x=`expr $x + 140`
+	  y=`expr $y + 100`
 	done
 
 	echo "$commands" | xdotool -
