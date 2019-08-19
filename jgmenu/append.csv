@@ -1,9 +1,17 @@
-#^sep()
-#Exit,^checkout(exit),system-shutdown
-#^tag(exit)
-#Lock,dde-shutdown
-#Log out,dde-shutdown,
-#Reboot,dde-shutdown,
-#Poweroff,dde-shutdown,
+#Edit dotfiles,^checkout(edit),org.gnome.gedit
+Windows,^checkout(windows),xfce4-workspaces
 ^sep()
 Power Menu,xfce4-session-logout,system-shutdown
+^tag(windows)
+Select,./winfuncs.sh select #,
+Tile all,./winfuncs.sh tile #,
+Side by side,./winfuncs.sh tiletwo #,
+Cascade,./winfuncs.sh cascade,
+Show desktop,./winfuncs.sh showdesktop,
+#^tag(edit)
+#Polybar,,text-enriched
+#Compton,,text-enriched
+#jgmenu,,text-enriched
+#Conky,,text-enriched
+
+

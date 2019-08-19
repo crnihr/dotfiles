@@ -19,7 +19,7 @@ menu_radius          = 5
 menu_border          = 1
 menu_halign          = left
 
-sub_spacing	     = -4
+sub_spacing	     = -1
 sub_padding_top      = 8
 sub_padding_right    = 0
 sub_padding_bottom   = 8
