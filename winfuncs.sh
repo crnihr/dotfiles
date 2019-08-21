@@ -59,6 +59,8 @@ function win_tile_two {
 
 	# set half width so tiling is only on primary monitor (use / 4 instead of / 2)
 	half_w=`expr ${DIM[0]} / 4`
+
+	# compensate for 28px top-bar
 	half_h=`expr ${DIM[1]} - 57`
 
 	commands="windowsize $wid1 $half_w $half_h"
@@ -105,10 +107,18 @@ function win_tile {
 
 	# do tiling 
 	x=0; y=0; commands=""
+
+	# compensate for 28px top-bar
+	if (( $rows > 1 )) ; then
+	    win_h_offset=28
+	else
+	    win_h_offset=57
+	fi
+
 	for window in ${WDOWS[@]} ; do
 		wmctrl -i -r $window -b remove,maximized_vert,maximized_horz
 
-		commands="$commands windowsize $window $win_w $win_h"
+		commands="$commands windowsize $window $win_w `expr $win_h - $win_h_offset`"
 		commands="$commands windowmove $window `expr $x \* $win_w` `expr $y \* $win_h`"
 
 		x=`expr $x + 1`
