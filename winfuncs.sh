@@ -48,6 +48,7 @@ function win_showdesktop {
 
 function win_tile_two {
 	get_desktop_dim
+
 	wid1=`xdotool selectwindow 2>/dev/null`
 
 	is_desktop "$wid1" && return
@@ -56,11 +57,12 @@ function win_tile_two {
 
 	is_desktop "$wid2" && return
 
-	# set half width so tiling is only on primary monitor use /4 instead of /2
+	# set half width so tiling is only on primary monitor (use / 4 instead of / 2)
 	half_w=`expr ${DIM[0]} / 4`
+	half_h=`expr ${DIM[1]} - 57`
 
-	commands="windowsize $wid1 $half_w ${DIM[1]}"
-	commands="$commands windowsize $wid2 $half_w ${DIM[1]}"
+	commands="windowsize $wid1 $half_w $half_h"
+	commands="$commands windowsize $wid2 $half_w $half_h"
 	commands="$commands windowmove $wid1 0 0"
 	commands="$commands windowmove $wid2 $half_w 0"
 	commands="$commands windowraise $wid1"
@@ -97,7 +99,7 @@ function win_tile {
 	(( $cols < 1 )) && cols=1;
 	(( $rows < 1 )) && rows=1;
 
-	# set half width so tiling is only on primary monitor use /2
+	# set half width so tiling is only on primary monitor (use / 2)
 	win_w=`expr ${DIM[0]} / 2 / $cols`
 	win_h=`expr ${DIM[1]} / $rows`
 
@@ -132,7 +134,7 @@ function win_cascade {
 		commands="$commands windowsize $window 960 540"
 		commands="$commands windowmove $window $x $y"
 
-		x=`expr $x + 140`
+		x=`expr $x + 120`
 	  y=`expr $y + 100`
 	done
 
