@@ -68,10 +68,10 @@ cursor-scroll = pointer
 ;double-click-left = polybar-msg cmd restart &
 click-left = jgmenu_run >/dev/null 2>&1 &
 click-middle = xfce4-taskmanager &
-click-right = ./winfuncs.sh select #
+click-right = ./winfuncs.sh select
 ; also
-; ./winfuncs.sh tile #
-; ./winfuncs.sh tiletwo #
+; ./winfuncs.sh tile
+; ./winfuncs.sh tiletwo
 ; ./winfuncs.sh cascade
 ; ./winfuncs.sh showdesktop
 
@@ -89,11 +89,11 @@ scroll-down =
 ;   none
 tray-position = none
 tray-detached = false
-tray-maxsize = 16
-tray-background = 
+tray-maxsize = 14
+tray-background = #00000000
 tray-offset-x = 0
 tray-offset-y = 0
-tray-padding = 0
+tray-padding = 2
 tray-scale = 1.0
 
 ;============================= fonts =====================================
@@ -114,7 +114,7 @@ font-7 = Noto Serif:bold:size=9;2
 
 modules-left = workspaces
 modules-center = compton xwindow
-modules-right = cpu mem fs torrent eth pulseaudio updates gedit settings date
+modules-right = cpu mem fs torrent eth pulseaudio updates gedit settings date shutdown
 
 
 ;=============================== jgmenu ==================================
@@ -128,7 +128,7 @@ content = "     "
 click-left = jgmenu_run >/dev/null 2>&1 &
 
 
-;=============================== shutdown =================================
+;=============================== shutdown ================================
 
 [module/shutdown]
 type = custom/text
@@ -174,7 +174,7 @@ click-left = pamac-manager &
 click-middle = 
 click-right = pamac-manager --updates &
 
-;=============================== compton ===================================
+;============================= compton ===================================
 
 [module/compton]
 type = custom/script
@@ -191,7 +191,7 @@ label = "   "
 format-foreground = ${colors.foreground-icon}
 
 
-;=============================== gedit ===================================
+;=============================== gedit====================================
 
 [module/gedit]
 type = custom/text
@@ -206,7 +206,7 @@ click-left = gedit ~/.config/polybar/config &
 click-middle = gedit ~/.config/compton.conf &
 click-right = gedit &
 
-;============================ settings ==== ==============================
+;============================== settings =================================
 
 [module/settings]
 type = custom/text
@@ -221,7 +221,7 @@ click-left = xfce4-settings-manager &
 click-middle = 
 click-right = 
 
-;============================ workspaces =================================
+;============================= workspaces ================================
 
 [module/workspaces]
 type = internal/xworkspaces
@@ -257,7 +257,7 @@ label-empty-foreground = ${colors.foreground}
 label-empty-background = 
 label-empty-padding = 4
 
-;============================ workspaces-alt =================================
+;=========================== workspaces-alt===============================
 
 [module/workspaces-alt]
 type = internal/xworkspaces
@@ -281,7 +281,7 @@ label-foreground = ${colors.foreground-icon}
 label = %title:0:120:...%
 label-empty = " "
 
-;=============================== cpu =====================================
+;================================ cpu ====================================
 
 [module/cpu]
 type = internal/cpu
@@ -294,7 +294,7 @@ format-background =
 format-padding = 
 label = %percentage:2%%
 
-;============================== mem ======================================
+;=============================== mem =====================================
 
 [module/mem]
 type = internal/memory
@@ -324,7 +324,7 @@ format-background =
 format-padding = 
 label = %percentage_used%%
 
-;=============================== fs ===================================
+;================================== fs ===================================
 
 [module/fs]
 type = internal/fs
@@ -352,7 +352,7 @@ label-unmounted-foreground = ${colors.foreground}
 label-unmounted-background = 
 label-unmounted-padding = 
 
-;============================ torrent + eth ====================================
+;============================ torrent + eth ================================
 
 [module/torrent]
 type = custom/text
@@ -390,7 +390,7 @@ format-disconnected = <label-disconnected>
 label-connected = " %downspeed%   %upspeed%  "
 label-disconnected = not connected
 
-;=============================== date =====================================
+;=============================== date ====================================
 
 [module/date]
 type = internal/date
@@ -400,7 +400,7 @@ label = %date%
 date = %H:%M
 date-alt = "   %A, %d %B %Y     %H:%M"
 
-;=========================== pulseaudio ===================================
+;=========================== pulseaudio ==================================
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -447,7 +447,7 @@ ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 
-;============================= temp ======================================
+;============================== temp =====================================
 
 [module/temp]
 type = internal/temperature
@@ -468,7 +468,7 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground}
 
-;============================ powermenu ==================================
+;============================= powermenu =================================
 
 [module/powermenu]
 type = custom/menu
