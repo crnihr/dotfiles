@@ -6,6 +6,17 @@
 # determine what windows are non-resizable by the user so that the script doesn't resize them
 # cascade also shaded windows
 
+# set desktop dimensions + compensate for top-bar
+screen_w=1920
+screen_h=1080
+top_bar=28
+
+function get_desktop_dim {	
+	if (( ${#DIM[@]} == 0 )) ; then
+		DIM=($screen_w `expr $screen_h - $top_bar`)
+	fi
+}
+
 # which workspace we're on
 function get_workspace {
 	if [[ "$DTOP" == "" ]] ; then
@@ -21,13 +32,6 @@ function is_desktop {
 function get_visible_window_ids {
 	if (( ${#WDOWS[@]} == 0 )) ; then
 		WDOWS=(`xdotool search --desktop $DTOP --onlyvisible "" 2>/dev/null`)
-	fi
-}
-
-function get_desktop_dim {
-	#desktop dimensions
-	if (( ${#DIM[@]} == 0 )) ; then
-		DIM=(`wmctrl -d | egrep "^0" | sed 's/.*DG: \([0-9]*x[0-9]*\).*/\1/g' | sed 's/x/ /g'`)
 	fi
 }
 
@@ -57,16 +61,13 @@ function win_tile_two {
 
 	is_desktop "$wid2" && return
 
-	# set half width so tiling is only on primary monitor (use / 4 instead of / 2)
-	half_w=`expr ${DIM[0]} / 4`
+	half_w=`expr ${DIM[0]} / 2`
+	win_h=`expr ${DIM[1]} - $top_bar`
 
-	# compensate for 28px top-bar
-	half_h=`expr ${DIM[1]} - 57`
-
-	commands="windowsize $wid1 $half_w $half_h"
-	commands="$commands windowsize $wid2 $half_w $half_h"
-	commands="$commands windowmove $wid1 0 0"
-	commands="$commands windowmove $wid2 $half_w 0"
+	commands="windowsize $wid1 $half_w $win_h"
+	commands="$commands windowsize $wid2 $half_w $win_h"
+	commands="$commands windowmove $wid1 0 $top_bar"
+	commands="$commands windowmove $wid2 $half_w $top_bar"
 	commands="$commands windowraise $wid1"
 	commands="$commands windowraise $wid2"
 
@@ -101,30 +102,21 @@ function win_tile {
 	(( $cols < 1 )) && cols=1;
 	(( $rows < 1 )) && rows=1;
 
-	# set half width so tiling is only on primary monitor (use / 2)
-	win_w=`expr ${DIM[0]} / 2 / $cols`
+	win_w=`expr ${DIM[0]} / $cols`
 	win_h=`expr ${DIM[1]} / $rows`
 
 	# do tiling 
 	x=0; y=0; commands=""
-
-	# compensate for 28px top-bar
-	if (( $rows > 1 )) ; then
-	    win_h_offset=28
-	else
-	    win_h_offset=57
-	fi
-
 	for window in ${WDOWS[@]} ; do
 		wmctrl -i -r $window -b remove,maximized_vert,maximized_horz
 
-		commands="$commands windowsize $window $win_w `expr $win_h - $win_h_offset`"
-		commands="$commands windowmove $window `expr $x \* $win_w` `expr $y \* $win_h`"
+		commands="$commands windowsize $window $win_w `expr $win_h - $top_bar`"
+		commands="$commands windowmove $window `expr $x \* $win_w` `expr $y \* $win_h + $top_bar`"
 
 		x=`expr $x + 1`
 		if (( $x > `expr $cols - 1` )) ; then
-	    x=0
-	    y=`expr $y + 1`
+	    	      x=0
+	    	      y=`expr $y + 1`
 		fi
 	done
 
