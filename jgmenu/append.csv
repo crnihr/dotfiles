@@ -3,9 +3,9 @@ Windows,^checkout(windows),xfce4-workspaces
 ^sep()
 Power Menu,xfce4-session-logout,system-shutdown
 ^tag(windows)
-Select,./winfuncs.sh select #,
-Tile all,./winfuncs.sh tile #,
-Side by side,./winfuncs.sh tiletwo #,
+Select,./winfuncs.sh select,
+Tile all,./winfuncs.sh tile,
+Side by side,./winfuncs.sh tiletwo,
 Cascade,./winfuncs.sh cascade,
 Show desktop,./winfuncs.sh showdesktop,
 #^tag(edit)
@@ -13,5 +13,3 @@ Show desktop,./winfuncs.sh showdesktop,
 #Compton,,text-enriched
 #jgmenu,,text-enriched
 #Conky,,text-enriched
-
-
