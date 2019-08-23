@@ -4,10 +4,10 @@ Windows,^checkout(windows),xfce4-workspaces
 Power Menu,xfce4-session-logout,system-shutdown
 ^tag(windows)
 Select,./winfuncs.sh select,
-Tile all,./winfuncs.sh tile,
-Side by side,./winfuncs.sh tiletwo,
-Cascade,./winfuncs.sh cascade,
-Show desktop,./winfuncs.sh showdesktop,
+Tile all                   Ctrl+Alt+Enter,./winfuncs.sh tile,
+Side by side            Ctrl+Alt+Dot,./winfuncs.sh tiletwo,
+Cascade                      Ctrl+Alt+0,./winfuncs.sh cascade,
+Show desktop            Ctrl+Alt+D,./winfuncs.sh showdesktop,
 #^tag(edit)
 #Polybar,,text-enriched
 #Compton,,text-enriched
