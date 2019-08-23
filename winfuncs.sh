@@ -7,13 +7,13 @@
 # cascade also shaded windows
 
 # set desktop dimensions + compensate for top-bar
-screen_w=1920
-screen_h=1080
+display_width=$(xdotool getdisplaygeometry | cut -d" " -f1)
+display_height=$(xdotool getdisplaygeometry | cut -d" " -f2)
 top_bar=28
 
 function get_desktop_dim {	
-	if (( ${#DIM[@]} == 0 )) ; then
-		DIM=($screen_w `expr $screen_h - $top_bar`)
+	if (( ${#DIM[@]} == 0 )) ; then	       
+		DIM=($display_width `expr $display_height - $top_bar`)
 	fi
 }
 
@@ -133,7 +133,7 @@ function win_cascade {
 	for window in ${WDOWS[@]} ; do
 		wmctrl -i -r $window -b remove,maximized_vert,maximized_horz
 
-		commands="$commands windowsize $window 960 540"
+		commands="$commands windowsize $window 1024 640"
 		commands="$commands windowmove $window $x $y"
 
 		x=`expr $x + 120`
