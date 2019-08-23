@@ -112,8 +112,8 @@ font-7 = Noto Serif:bold:size=9;2
 ;=========================================================================
 ;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date torrent gedit updates files settings shutdown
 
-modules-left = workspaces
-modules-center = compton xwindow
+modules-left = workspaces 
+modules-center = xwindow
 modules-right = cpu mem fs torrent eth pulseaudio updates gedit settings date shutdown
 
 
@@ -219,7 +219,7 @@ content-padding =
 
 click-left = xfce4-settings-manager &
 click-middle = 
-click-right = 
+click-right = ~/.config/polybar/scripts/compton.sh --toggle
 
 ;============================= workspaces ================================
 
@@ -278,7 +278,7 @@ label-empty-padding = 4
 type = internal/xwindow
 
 label-foreground = ${colors.foreground-icon}
-label = %title:0:120:...%
+label = %title:0:130:...%
 label-empty = " "
 
 ;================================ cpu ====================================
