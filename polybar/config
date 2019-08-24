@@ -1,4 +1,4 @@
-;=========================================================================
+;========================================================================
 ;
 ;
 ;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
@@ -14,7 +14,7 @@
 ;
 ;   The README contains alot of information
 ;
-;=========================================================================
+;========================================================================
 
 [colors]
 background = #00000000
@@ -36,9 +36,9 @@ margin-top = 0
 margin-bottom = 0
 
 
-;=========================================================================
+;========================================================================
 ;				  top-bar
-;=========================================================================
+;========================================================================
 [bar/top-bar]
 monitor = ${env:MONITOR:DVI-I-0}
 width = 100%
@@ -55,7 +55,7 @@ line-color =
 border-size = 
 border-color = 
 padding-left = 0
-padding-right = 4
+padding-right = 2
 module-margin-left = 1
 module-margin-right = 0
 separator = 
@@ -96,7 +96,7 @@ tray-offset-y = 0
 tray-padding = 2
 tray-scale = 1.0
 
-;============================= fonts =====================================
+;============================= fonts ====================================
 
 font-0 = Noto Sans:size=9;2
 font-1 = FontAwesome:pixelsize=10;2
@@ -107,9 +107,9 @@ font-5 = Material Icons:pixelsize=12;3
 font-6 = Noto Serif:size=9;2
 font-7 = Noto Serif:bold:size=9;2
 
-;=========================================================================
+;========================================================================
 ;			       modules
-;=========================================================================
+;========================================================================
 ;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date torrent gedit updates files settings shutdown
 
 modules-left = workspaces 
@@ -117,7 +117,7 @@ modules-center = xwindow
 modules-right = cpu mem fs torrent eth pulseaudio updates gedit settings date shutdown
 
 
-;=============================== jgmenu ==================================
+;=============================== jgmenu =================================
 
 [module/jgmenu]
 type = custom/text
@@ -128,7 +128,7 @@ content = "     "
 click-left = jgmenu_run >/dev/null 2>&1 &
 
 
-;=============================== shutdown ================================
+;=============================== shutdown ===============================
 
 [module/shutdown]
 type = custom/text
@@ -142,7 +142,7 @@ click-left = xfce4-session-logout &
 click-middle = 
 click-right = 
 
-;=============================== files ===================================
+;============================== files ===================================
 
 [module/files]
 type = custom/text
@@ -156,7 +156,7 @@ click-left =
 click-middle = 
 click-right = 
 
-;=============================== updates ===================================
+;============================= updates ==================================
 
 [module/updates]
 type = custom/script
@@ -174,7 +174,7 @@ click-left = pamac-manager &
 click-middle = 
 click-right = pamac-manager --updates &
 
-;============================= compton ===================================
+;============================ compton ===================================
 
 [module/compton]
 type = custom/script
@@ -191,7 +191,7 @@ label = "   "
 format-foreground = ${colors.foreground-icon}
 
 
-;=============================== gedit====================================
+;============================== gedit====================================
 
 [module/gedit]
 type = custom/text
@@ -206,7 +206,7 @@ click-left = gedit ~/.config/polybar/config &
 click-middle = gedit ~/.config/compton.conf &
 click-right = gedit &
 
-;============================== settings =================================
+;============================= settings =================================
 
 [module/settings]
 type = custom/text
@@ -221,7 +221,7 @@ click-left = xfce4-settings-manager &
 click-middle = 
 click-right = ~/.config/polybar/scripts/compton.sh --toggle
 
-;============================= workspaces ================================
+;============================ workspaces ================================
 
 [module/workspaces]
 type = internal/xworkspaces
@@ -257,7 +257,7 @@ label-empty-foreground = ${colors.foreground}
 label-empty-background = 
 label-empty-padding = 4
 
-;=========================== workspaces-alt===============================
+;========================== workspaces-alt===============================
 
 [module/workspaces-alt]
 type = internal/xworkspaces
@@ -272,7 +272,7 @@ label-empty-foreground = ${colors.foreground}
 label-empty-background = 
 label-empty-padding = 4
 
-;============================== xwindow ==================================
+;============================= xwindow ==================================
 
 [module/xwindow]
 type = internal/xwindow
@@ -281,7 +281,7 @@ label-foreground = ${colors.foreground-icon}
 label = %title:0:130:...%
 label-empty = " "
 
-;================================ cpu ====================================
+;=============================== cpu ====================================
 
 [module/cpu]
 type = internal/cpu
@@ -294,7 +294,7 @@ format-background =
 format-padding = 
 label = %percentage:2%%
 
-;=============================== mem =====================================
+;============================== mem =====================================
 
 [module/mem]
 type = internal/memory
@@ -324,7 +324,7 @@ format-background =
 format-padding = 
 label = %percentage_used%%
 
-;================================== fs ===================================
+;================================= fs ===================================
 
 [module/fs]
 type = internal/fs
@@ -352,7 +352,7 @@ label-unmounted-foreground = ${colors.foreground}
 label-unmounted-background = 
 label-unmounted-padding = 
 
-;============================ torrent + eth ================================
+;========================= torrent + eth ================================
 
 [module/torrent]
 type = custom/text
@@ -390,7 +390,7 @@ format-disconnected = <label-disconnected>
 label-connected = " %downspeed%   %upspeed%  "
 label-disconnected = not connected
 
-;=============================== date ====================================
+;============================== date ====================================
 
 [module/date]
 type = internal/date
@@ -400,7 +400,7 @@ label = %date%
 date = %H:%M
 date-alt = "   %A, %d %B %Y     %H:%M"
 
-;=========================== pulseaudio ==================================
+;========================== pulseaudio ==================================
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -447,7 +447,7 @@ ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 
-;============================== temp =====================================
+;============================= temp =====================================
 
 [module/temp]
 type = internal/temperature
@@ -468,7 +468,7 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground}
 
-;============================= powermenu =================================
+;============================ powermenu =================================
 
 [module/powermenu]
 type = custom/menu
