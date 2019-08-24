@@ -6,10 +6,17 @@
 # determine what windows are non-resizable by the user so that the script doesn't resize them
 # cascade also shaded windows
 
-# set desktop dimensions + compensate for top-bar
-display_width=$(xdotool getdisplaygeometry | cut -d" " -f1)
-display_height=$(xdotool getdisplaygeometry | cut -d" " -f2)
-top_bar=28
+# set desktop dimensions
+display_width=$(xdotool getdisplaygeometry | awk '{ print $1 }')
+display_height=$(xdotool getdisplaygeometry | awk '{ print $2 }')
+
+# window decorations (not used)
+window_id=$(xdotool getactivewindow)
+y_offset=$(xwininfo -id "$window_id" | awk '/Relative upper-left Y:/ { print $4 }')
+
+# top panel
+top_bar=$(xprop -root _NET_WORKAREA | awk '{ print $4 }' | colrm 3)
+
 
 function get_desktop_dim {	
 	if (( ${#DIM[@]} == 0 )) ; then	       
