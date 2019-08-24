@@ -1,15 +1,22 @@
-#Edit dotfiles,^checkout(edit),org.gnome.gedit
 Windows,^checkout(windows),xfce4-workspaces
 ^sep()
 Power Menu,xfce4-session-logout,system-shutdown
 ^tag(windows)
+Edit dotfiles,^checkout(edit),org.gnome.gedit
 Select,./winfuncs.sh select,
 Tile all                   Ctrl+Alt+Enter,./winfuncs.sh tile,
 Side by side            Ctrl+Alt+Dot,./winfuncs.sh tiletwo,
 Cascade                      Ctrl+Alt+0,./winfuncs.sh cascade,
 Show desktop            Ctrl+Alt+D,./winfuncs.sh showdesktop,
-#^tag(edit)
-#Polybar,,text-enriched
-#Compton,,text-enriched
-#jgmenu,,text-enriched
-#Conky,,text-enriched
+^tag(edit)
+jgmenu,^checkout(jgmenu),org.gnome.gedit
+Polybar,gedit ~/.config/polybar/config,text-plain
+Compton,gedit ~/.config/compton.conf,text-plain
+Quicktile,gedit ~/.config/quicktile.cfg,text-plain
+Conky,gedit ~/.conky/Datetime/DateTimeLight-Top-Right,text-plain
+winfuncs.sh,gedit ~/winfuncs.sh,text-x-script
+^tag(jgmenu)
+jgmenu,gedit ~/.config/jgmenu/jgmenurc,text-plain
+append,gedit ~/.config/jgmenu/append.csv,text-plain
+preppend,gedit ~/.config/jgmenu/prepend.csv,text-plain
+
