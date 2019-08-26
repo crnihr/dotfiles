@@ -242,8 +242,8 @@ function win_cascade {
 		commands="$commands windowsize $window 1024 640"
 		commands="$commands windowmove $window $x `expr $y + $top_bar`"
 
-		x=`expr $x + 120`
-	  y=`expr $y + 100`
+		x=`expr $x + 100`
+	  y=`expr $y + 80`
 	done
 
 	echo "$commands" | xdotool -
