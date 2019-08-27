@@ -6,6 +6,15 @@
 # determine what windows are non-resizable by the user so that the script doesn't resize them
 # cascade also shaded windows
 
+# winfuncs.sh select
+# winfuncs.sh tile
+# winfuncs.sh tiletwo
+# winfuncs.sh tilethree
+# winfuncs.sh tilethreev
+# winfuncs.sh stacktwo
+# winfuncs.sh cascade
+# winfuncs.sh showdesktop
+
 # set desktop dimensions
 display_width=$(xdotool getdisplaygeometry | cut -d" " -f1)
 display_height=$(xdotool getdisplaygeometry | cut -d" " -f2)
