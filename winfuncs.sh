@@ -19,6 +19,9 @@
 display_width=$(xdotool getdisplaygeometry | cut -d" " -f1)
 display_height=$(xdotool getdisplaygeometry | cut -d" " -f2)
 
+# desktop height without panel(s)
+desktop_height=$(xprop -root _NET_WORKAREA | awk '{ print $6 }' | cut -d"," -f1)
+
 # window decorations
 window_id=$(xdotool getactivewindow)
 titlebar_offset=$(xwininfo -id "$window_id" | awk '/Relative upper-left Y:/ { print $4 }')
@@ -26,10 +29,12 @@ titlebar_offset=$(xwininfo -id "$window_id" | awk '/Relative upper-left Y:/ { pr
 # top panel
 top_bar=$(xprop -root _NET_WORKAREA | awk '{ print $4 }' | cut -d"," -f1)
 
+# bottom panel
+# bottom_bar=`expr $display_height - $desktop_height - $top_bar`
 
 function get_desktop_dim {	
 	if (( ${#DIM[@]} == 0 )) ; then	       
-		DIM=($display_width `expr $display_height - $top_bar`)
+		DIM=($display_width $desktop_height)
 	fi
 }
 
