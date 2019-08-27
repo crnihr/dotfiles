@@ -68,12 +68,15 @@ cursor-scroll = pointer
 ;double-click-left = polybar-msg cmd restart &
 click-left = jgmenu_run >/dev/null 2>&1 &
 click-middle = xfce4-taskmanager &
-click-right = ./winfuncs.sh select
+click-right = ~/winfuncs.sh select &
 ; also
-; ./winfuncs.sh tile
-; ./winfuncs.sh tiletwo
-; ./winfuncs.sh cascade
-; ./winfuncs.sh showdesktop
+; winfuncs.sh tile
+; winfuncs.sh tiletwo
+; winfuncs.sh tilethree
+; winfuncs.sh tilethreev
+; winfuncs.sh stacktwo
+; winfuncs.sh cascade
+; winfuncs.sh showdesktop
 
 scroll-up =
 scroll-down =
@@ -251,10 +254,25 @@ label-active-background = ${colors.workspace-active}
 label-active-underline = 
 label-active-padding = 4
 
+label-occupied-font = 1
+label-occupied = %index%
+label-occupied-foreground = #09FF00
+label-occupied-background = 
+label-occupied-underline = 
+label-occupied-padding = 4
+
+label-urgent-font = 1
+label-urgent = %index%
+label-urgent-foreground = #FF0000
+label-urgent-background = 
+label-urgent-underline = 
+label-urgent-padding = 4
+
 label-empty-font = 1
 label-empty = %index%
 label-empty-foreground = ${colors.foreground}
 label-empty-background = 
+label-empty-underline = 
 label-empty-padding = 4
 
 ;========================== workspaces-alt===============================
@@ -492,4 +510,5 @@ menu-0-2-exec =
 ;=========================================================================
 
 ; vim:ft=dosini
+
 
