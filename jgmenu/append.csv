@@ -3,9 +3,11 @@ Windows,^checkout(windows),xfce4-workspaces
 Power Menu,xfce4-session-logout,system-shutdown
 ^tag(windows)
 .dotfiles,^checkout(edit),org.gnome.gedit
-Select window,./winfuncs.sh select,
-Tile all                        Ctrl+Alt+Enter,./winfuncs.sh tile,
+Select ,./winfuncs.sh select,
+Tile                            Ctrl+Alt+Enter,./winfuncs.sh tile,
 Tile two                        Ctrl+Alt+End,./winfuncs.sh tiletwo,
+Tile two left                    ,./winfuncs.sh tiletwol,
+Tile two right                    ,./winfuncs.sh tiletwor,
 Tile three                  Ctrl+Alt+PgDn,./winfuncs.sh tilethree,
 Tile three vertical   Ctrl+Alt+PgUp,./winfuncs.sh tilethreev,
 Stack two                 Ctrl+Alt+Home,./winfuncs.sh stacktwo,
