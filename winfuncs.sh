@@ -9,6 +9,8 @@
 # winfuncs.sh select
 # winfuncs.sh tile
 # winfuncs.sh tiletwo
+# winfuncs.sh tiletwol
+# winfuncs.sh tiletwor
 # winfuncs.sh tilethree
 # winfuncs.sh tilethreev
 # winfuncs.sh stacktwo
@@ -29,8 +31,8 @@ titlebar_offset=$(xwininfo -id "$window_id" | awk '/Relative upper-left Y:/ { pr
 # top panel
 top_bar=$(xprop -root _NET_WORKAREA | awk '{ print $4 }' | cut -d"," -f1)
 
-# bottom panel
-# bottom_bar=`expr $display_height - $desktop_height - $top_bar`
+# bottom panel (not needed)
+bottom_bar=`expr $display_height - $desktop_height - $top_bar`
 
 function get_desktop_dim {	
 	if (( ${#DIM[@]} == 0 )) ; then	       
@@ -87,6 +89,60 @@ function win_tile_two {
 
 	commands="windowsize $wid1 $half_w `expr $win_h - $titlebar_offset`"
 	commands="$commands windowsize $wid2 $half_w `expr $win_h - $titlebar_offset`"
+	commands="$commands windowmove $wid1 0 $top_bar"
+	commands="$commands windowmove $wid2 $half_w $top_bar"
+	commands="$commands windowraise $wid1"
+	commands="$commands windowraise $wid2"
+
+	wmctrl -i -r $wid1 -b remove,maximized_vert,maximized_horz
+	wmctrl -i -r $wid2 -b remove,maximized_vert,maximized_horz
+
+	echo "$commands" | xdotool -
+}
+
+function win_tile_two_left {
+	get_desktop_dim
+
+	wid1=`xdotool selectwindow 2>/dev/null`
+
+	is_desktop "$wid1" && return
+
+	wid2=`xdotool selectwindow 2>/dev/null`
+
+	is_desktop "$wid2" && return
+
+	half_w=`expr ${DIM[0]} / 3`
+	win_h=${DIM[1]}
+
+	commands="windowsize  $wid1 `expr $half_w \* 2` `expr $win_h - $titlebar_offset`"
+	commands="$commands windowsize $wid2 $half_w `expr $win_h - $titlebar_offset`"
+	commands="$commands windowmove $wid1 0 $top_bar"
+	commands="$commands windowmove $wid2 `expr $half_w \* 2` $top_bar"
+	commands="$commands windowraise $wid1"
+	commands="$commands windowraise $wid2"
+
+	wmctrl -i -r $wid1 -b remove,maximized_vert,maximized_horz
+	wmctrl -i -r $wid2 -b remove,maximized_vert,maximized_horz
+
+	echo "$commands" | xdotool -
+}
+
+function win_tile_two_right {
+	get_desktop_dim
+
+	wid1=`xdotool selectwindow 2>/dev/null`
+
+	is_desktop "$wid1" && return
+
+	wid2=`xdotool selectwindow 2>/dev/null`
+
+	is_desktop "$wid2" && return
+
+	half_w=`expr ${DIM[0]} / 3`
+	win_h=${DIM[1]}
+
+	commands="windowsize  $wid1 $half_w `expr $win_h - $titlebar_offset`"
+	commands="$commands windowsize $wid2 `expr $half_w \* 2` `expr $win_h - $titlebar_offset`"
 	commands="$commands windowmove $wid1 0 $top_bar"
 	commands="$commands windowmove $wid2 $half_w $top_bar"
 	commands="$commands windowraise $wid1"
@@ -311,6 +367,10 @@ for command in ${@} ; do
 		win_select
 	elif [[ "$command" == "tiletwo" ]] ; then
 		win_tile_two
+	elif [[ "$command" == "tiletwol" ]] ; then
+		win_tile_two_left
+	elif [[ "$command" == "tiletwor" ]] ; then
+		win_tile_two_right
 	elif [[ "$command" == "stacktwo" ]] ; then
 		win_stack_two
 	elif [[ "$command" == "tilethree" ]] ; then
