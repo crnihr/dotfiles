@@ -17,6 +17,9 @@
 # winfuncs.sh cascade
 # winfuncs.sh showdesktop
 
+# set gaps - use even numbers, set to 0 to remove gaps
+gaps=0
+
 # set desktop dimensions
 display_width=$(xdotool getdisplaygeometry | cut -d" " -f1)
 display_height=$(xdotool getdisplaygeometry | cut -d" " -f2)
@@ -87,10 +90,10 @@ function win_tile_two {
 	half_w=`expr ${DIM[0]} / 2`
 	win_h=${DIM[1]}
 
-	commands="windowsize $wid1 $half_w `expr $win_h - $titlebar_offset`"
-	commands="$commands windowsize $wid2 $half_w `expr $win_h - $titlebar_offset`"
-	commands="$commands windowmove $wid1 0 $top_bar"
-	commands="$commands windowmove $wid2 $half_w $top_bar"
+	commands="windowsize $wid1 `expr $half_w - $gaps - $gaps / 2` `expr $win_h - $titlebar_offset - $gaps \* 2`"
+	commands="$commands windowsize $wid2 `expr $half_w - $gaps - $gaps / 2` `expr $win_h - $titlebar_offset - $gaps \* 2`"
+	commands="$commands windowmove $wid1 $gaps `expr $top_bar + $gaps`"
+	commands="$commands windowmove $wid2 `expr $half_w + $gaps - $gaps / 2` `expr $top_bar + $gaps`"
 	commands="$commands windowraise $wid1"
 	commands="$commands windowraise $wid2"
 
@@ -114,10 +117,10 @@ function win_tile_two_left {
 	half_w=`expr ${DIM[0]} / 3`
 	win_h=${DIM[1]}
 
-	commands="windowsize  $wid1 `expr $half_w \* 2` `expr $win_h - $titlebar_offset`"
-	commands="$commands windowsize $wid2 $half_w `expr $win_h - $titlebar_offset`"
-	commands="$commands windowmove $wid1 0 $top_bar"
-	commands="$commands windowmove $wid2 `expr $half_w \* 2` $top_bar"
+	commands="windowsize  $wid1 `expr $half_w \* 2 - $gaps` `expr $win_h - $titlebar_offset - $gaps \* 2`"
+	commands="$commands windowsize $wid2 `expr $half_w - $gaps \* 2` `expr $win_h - $titlebar_offset - $gaps \* 2`"
+	commands="$commands windowmove $wid1 $gaps `expr $top_bar + $gaps`"
+	commands="$commands windowmove $wid2 `expr $half_w \* 2 + $gaps` `expr $top_bar + $gaps`"
 	commands="$commands windowraise $wid1"
 	commands="$commands windowraise $wid2"
 
@@ -141,10 +144,10 @@ function win_tile_two_right {
 	half_w=`expr ${DIM[0]} / 3`
 	win_h=${DIM[1]}
 
-	commands="windowsize  $wid1 $half_w `expr $win_h - $titlebar_offset`"
-	commands="$commands windowsize $wid2 `expr $half_w \* 2` `expr $win_h - $titlebar_offset`"
-	commands="$commands windowmove $wid1 0 $top_bar"
-	commands="$commands windowmove $wid2 $half_w $top_bar"
+	commands="windowsize  $wid1 `expr $half_w - $gaps \* 2` `expr $win_h - $titlebar_offset - $gaps \* 2`"
+	commands="$commands windowsize $wid2 `expr $half_w \* 2 - $gaps` `expr $win_h - $titlebar_offset - $gaps \* 2`"
+	commands="$commands windowmove $wid1 $gaps `expr $top_bar + $gaps`"
+	commands="$commands windowmove $wid2 $half_w `expr $top_bar + $gaps`"
 	commands="$commands windowraise $wid1"
 	commands="$commands windowraise $wid2"
 
@@ -168,10 +171,10 @@ function win_stack_two {
 	win_w=${DIM[0]}
         half_h=`expr ${DIM[1]} / 2`
 
-	commands="windowsize $wid1 $win_w `expr $half_h - $titlebar_offset`"
-	commands="$commands windowsize $wid2 $win_w `expr $half_h - $titlebar_offset`"
-	commands="$commands windowmove $wid1 0 $top_bar"
-	commands="$commands windowmove $wid2 0 `expr $half_h + $top_bar`"
+	commands="windowsize $wid1 `expr $win_w - $gaps \* 2` `expr $half_h - $titlebar_offset - $gaps - $gaps / 2`"
+	commands="$commands windowsize $wid2 `expr $win_w - $gaps \* 2` `expr $half_h - $titlebar_offset - $gaps - $gaps / 2`"
+	commands="$commands windowmove $wid1 $gaps `expr $top_bar + $gaps`"
+	commands="$commands windowmove $wid2 $gaps `expr $half_h + $top_bar + $gaps - $gaps / 2`"
 	commands="$commands windowraise $wid1"
 	commands="$commands windowraise $wid2"
 
@@ -201,12 +204,12 @@ function win_tile_three {
         half_w=`expr ${DIM[0]} / 2`
 	half_h=`expr ${win_h} / 2`
 
-	commands="windowsize $wid1 $half_w `expr $win_h - $titlebar_offset`"
-	commands="$commands windowsize $wid2 $half_w `expr $half_h - $titlebar_offset`"
-	commands="$commands windowsize $wid3 $half_w `expr $half_h - $titlebar_offset`"
-	commands="$commands windowmove $wid1 0 $top_bar"
-	commands="$commands windowmove $wid2 $half_w $top_bar"
-	commands="$commands windowmove $wid3 $half_w `expr $half_h + $top_bar`"
+	commands="windowsize $wid1 `expr $half_w - $gaps - $gaps / 2` `expr $win_h - $titlebar_offset - $gaps \* 2`"
+	commands="$commands windowsize $wid2 `expr $half_w - $gaps - $gaps / 2` `expr $half_h - $titlebar_offset - $gaps - $gaps / 2`"
+	commands="$commands windowsize $wid3 `expr $half_w - $gaps - $gaps / 2` `expr $half_h - $titlebar_offset - $gaps - $gaps / 2`"
+	commands="$commands windowmove $wid1 $gaps `expr $top_bar + $gaps`"
+	commands="$commands windowmove $wid2 `expr $half_w + $gaps - $gaps / 2` `expr $top_bar + $gaps`"
+	commands="$commands windowmove $wid3 `expr $half_w + $gaps - $gaps / 2` `expr $half_h + $top_bar + $gaps - $gaps / 2`"
 	commands="$commands windowraise $wid1"
 	commands="$commands windowraise $wid2"
 	commands="$commands windowraise $wid3"
@@ -236,12 +239,12 @@ function win_tile_three_v {
         win_h=${DIM[1]}
         half_w=`expr ${DIM[0]} / 3`
 
-	commands="windowsize $wid1 $half_w `expr $win_h - $titlebar_offset`"
-	commands="$commands windowsize $wid2 $half_w `expr $win_h - $titlebar_offset`"
-	commands="$commands windowsize $wid3 $half_w `expr $win_h - $titlebar_offset`"
-	commands="$commands windowmove $wid1 0 $top_bar"
-	commands="$commands windowmove $wid2 $half_w $top_bar"
-	commands="$commands windowmove $wid3 `expr $half_w \* 2` $top_bar"
+	commands="windowsize $wid1 `expr $half_w - $gaps - $gaps / 3` `expr $win_h - $titlebar_offset - $gaps \* 2`"
+	commands="$commands windowsize $wid2 `expr $half_w - $gaps - $gaps / 3` `expr $win_h - $titlebar_offset - $gaps \* 2`"
+	commands="$commands windowsize $wid3 `expr $half_w - $gaps - $gaps / 3` `expr $win_h - $titlebar_offset - $gaps \* 2`"
+	commands="$commands windowmove $wid1 $gaps `expr $top_bar + $gaps`"
+	commands="$commands windowmove $wid2 `expr $half_w + $gaps - $gaps / 3` `expr $top_bar + $gaps`"
+	commands="$commands windowmove $wid3 `expr $half_w \* 2 + $gaps - $gaps / 2` `expr $top_bar + $gaps`"
 	commands="$commands windowraise $wid1"
 	commands="$commands windowraise $wid2"
 	commands="$commands windowraise $wid3"
@@ -286,8 +289,8 @@ function win_tile {
 	for window in ${WDOWS[@]} ; do
 		wmctrl -i -r $window -b remove,maximized_vert,maximized_horz
 
-		commands="$commands windowsize $window $win_w `expr $win_h - $titlebar_offset`"
-		commands="$commands windowmove $window `expr $x \* $win_w` `expr $y \* $win_h + $top_bar`"
+		commands="$commands windowsize $window `expr $win_w - $gaps \* 2` `expr $win_h - $titlebar_offset - $gaps \* 2`"
+		commands="$commands windowmove $window `expr $x \* $win_w + $gaps` `expr $y \* $win_h + $top_bar + $gaps`"
 
 		x=`expr $x + 1`
 		if (( $x > `expr $cols - 1` )) ; then
@@ -310,7 +313,7 @@ function win_cascade {
 		wmctrl -i -r $window -b remove,maximized_vert,maximized_horz
 
 		commands="$commands windowsize $window 1024 640"
-		commands="$commands windowmove $window $x `expr $y + $top_bar`"
+		commands="$commands windowmove $window `expr $x + $gaps` `expr $y + $top_bar + $gaps`"
 
 		x=`expr $x + 100`
 	  y=`expr $y + 80`
