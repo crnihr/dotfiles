@@ -21,6 +21,9 @@
 outer_gaps=0
 inner_gaps=0
 
+# set gaps for 'select' mode
+expose_gaps=40
+
 # set desktop dimensions
 display_width=$(xdotool getdisplaygeometry | cut -d" " -f1)
 display_height=$(xdotool getdisplaygeometry | cut -d" " -f2)
@@ -303,6 +306,52 @@ function win_tile {
 	echo "$commands" | xdotool -
 }
 
+function expose {
+	get_workspace
+	get_visible_window_ids
+
+	(( ${#WDOWS[@]} < 1 )) && return;
+
+	get_desktop_dim
+
+	# determine how many rows and columns we need
+	cols=`echo "sqrt(${#WDOWS[@]})" | bc`
+	rows=$cols
+	wins=`expr $rows \* $cols`
+
+	if (( "$wins" < "${#WDOWS[@]}" )) ; then
+		cols=`expr $cols + 1`
+		wins=`expr $rows \* $cols`
+		if (( "$wins" < "${#WDOWS[@]}" )) ; then
+	    rows=`expr $rows + 1`
+	    wins=`expr $rows \* $cols`
+		fi
+	fi
+
+	(( $cols < 1 )) && cols=1;
+	(( $rows < 1 )) && rows=1;
+
+	win_w=`expr ${DIM[0]} / $cols`
+	win_h=`expr ${DIM[1]} / $rows`
+		
+	# do tiling 
+	x=0; y=0; commands=""
+	for window in ${WDOWS[@]} ; do
+		wmctrl -i -r $window -b remove,maximized_vert,maximized_horz
+
+		commands="$commands windowsize $window `expr $win_w - $expose_gaps \* 2` `expr $win_h - $titlebar_offset - $expose_gaps \* 2`"
+		commands="$commands windowmove $window `expr $x \* $win_w + $expose_gaps` `expr $y \* $win_h + $top_bar + $expose_gaps`"
+
+		x=`expr $x + 1`
+		if (( $x > `expr $cols - 1` )) ; then
+	    	      x=0
+	    	      y=`expr $y + 1`
+		fi
+	done
+
+	echo "$commands" | xdotool -
+}
+
 function win_cascade {
 	get_workspace
 	get_visible_window_ids
@@ -345,7 +394,7 @@ function win_select {
 	done
 
 	# tile windows
-	win_tile
+	expose
 
 	# select a window
 	wid=`xdotool selectwindow 2>/dev/null`
