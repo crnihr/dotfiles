@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #todo:
-# cancel for tile functionsuragan Doria
+# cancel for tile function
 # determine what windows are maximized and re-max after the "window select" function
 # determine what windows are non-resizable by the user so that the script doesn't resize them
 # cascade also shaded windows
