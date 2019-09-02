@@ -72,6 +72,8 @@ click-right = ~/winfuncs.sh select &
 ; also
 ; winfuncs.sh tile
 ; winfuncs.sh tiletwo
+; winfuncs.sh tiletwol
+; winfuncs.sh tiletwor
 ; winfuncs.sh tilethree
 ; winfuncs.sh tilethreev
 ; winfuncs.sh stacktwo
@@ -92,11 +94,11 @@ scroll-down =
 ;   none
 tray-position = none
 tray-detached = false
-tray-maxsize = 14
-tray-background = #00000000
-tray-offset-x = 0
+tray-maxsize = 15
+tray-background = 
+tray-offset-x = -6
 tray-offset-y = 0
-tray-padding = 2
+tray-padding = 0
 tray-scale = 1.0
 
 ;============================= fonts ====================================
