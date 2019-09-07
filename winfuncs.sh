@@ -22,7 +22,7 @@ outer_gaps=0
 inner_gaps=0
 
 # set gaps for 'select' mode
-expose_gaps=40
+expose_gaps=20
 
 # set desktop dimensions
 display_width=$(xdotool getdisplaygeometry | cut -d" " -f1)
