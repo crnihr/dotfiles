@@ -10,9 +10,11 @@ case "$1" in
         ;;
     *)
         if [ "$(pgrep -x zentile)" ]; then
-            echo "#1"
+            echo ""
         else
-            echo "#2"
+            echo ""
         fi
         ;;
 esac
+
+
