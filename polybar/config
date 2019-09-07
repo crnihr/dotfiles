@@ -70,6 +70,7 @@ click-left = jgmenu_run >/dev/null 2>&1 &
 click-middle = xfce4-taskmanager &
 click-right = ~/winfuncs.sh select &
 ; also
+; winfuncs.sh select
 ; winfuncs.sh tile
 ; winfuncs.sh tiletwo
 ; winfuncs.sh tiletwol
@@ -119,7 +120,7 @@ font-7 = Noto Serif:bold:size=9;2
 
 modules-left = workspaces 
 modules-center = xwindow
-modules-right = cpu mem fs torrent eth pulseaudio updates gedit settings date shutdown
+modules-right = cpu mem fs torrent eth pulseaudio zentile updates gedit settings date shutdown
 
 
 ;=============================== jgmenu =================================
@@ -195,6 +196,19 @@ format-prefix-foreground =
 label = "   "
 format-foreground = ${colors.foreground-icon}
 
+;============================= zentile ==================================
+
+[module/zentile]
+type = custom/text
+
+content = "  "
+content-background = 
+content-foreground = ${colors.foreground-icon}
+content-padding = 
+
+click-left = ~/.config/polybar/scripts/zentile.sh --toggle &
+click-middle = 
+click-right = 
 
 ;============================== gedit====================================
 
