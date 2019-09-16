@@ -68,7 +68,7 @@ cursor-scroll = pointer
 ;double-click-left = polybar-msg cmd restart &
 click-left = jgmenu_run >/dev/null 2>&1 &
 click-middle = xfce4-taskmanager &
-click-right = ~/winfuncs.sh select &
+click-right = ~/winfuncs.sh cascade &
 ; also
 ; winfuncs.sh select
 ; winfuncs.sh tile
@@ -116,7 +116,7 @@ font-7 = Noto Serif:bold:size=9;2
 ;========================================================================
 ;			       modules
 ;========================================================================
-;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date torrent gedit updates files settings shutdown
+;jgmenu workspaces xwindow powermenu pulseaudio cpu mem fs eth date torrent gedit updates files settings shutdown zentile
 
 modules-left = workspaces 
 modules-center = xwindow
