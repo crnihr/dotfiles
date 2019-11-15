@@ -21,9 +21,9 @@ menu_halign          = left
 
 sub_spacing	     = -1
 sub_padding_top      = 8
-sub_padding_right    = 0
+sub_padding_right    = 1
 sub_padding_bottom   = 8
-sub_padding_left     = 0
+sub_padding_left     = 1
 
 sub_hover_action     = 1
 hover_delay	     = 150
@@ -48,12 +48,12 @@ color_norm_bg        = #2b303b 0
 color_norm_fg        = #202020 70
 
 #qogir
-color_sel_bg         = #5294E2 100
-color_sel_fg         = #ffffff 100
+#color_sel_bg         = #5294E2 100
+#color_sel_fg         = #ffffff 100
 
 #gray
-#color_sel_bg         = #E6E7E8 100
-#color_sel_fg         = #202020 100
+color_sel_bg         = #E6E7E8 100
+color_sel_fg         = #202020 100
 
 color_sep_fg         = #000000 10
 
