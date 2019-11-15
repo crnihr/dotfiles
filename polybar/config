@@ -218,7 +218,7 @@ type = custom/script
 exec = ~/.config/polybar/scripts/zentile.sh
 interval = 5
 
-;icon is set in the script   
+;icons are set in the script   
 format-prefix = 
 format-prefix-foreground = 
 label = " %output% "
